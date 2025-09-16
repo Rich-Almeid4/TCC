@@ -14,11 +14,11 @@ mysqli_query($conn, $sql);
 
 if (mysqli_affected_rows($conn)>0) {
      $_SESSION['mensagem'] = 'Usuário cadastrado!';
-    header('Location: index.php');
+    header('Location: login.php');
     exit;
 }else {
     $_SESSION['mensagem'] = 'ERROR!';
-    header('Location: index.php');
+    header('Location: cadastro.php');
     exit;
 }
 }
