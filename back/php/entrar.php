@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $_SESSION['mensagem'] = 'Logado com sucesso!';
-    $_SESSION['nivel'] = 10;
+    $_SESSION['nivel'] = 2;
     header('Location: index.php');
     exit;
 } else {
