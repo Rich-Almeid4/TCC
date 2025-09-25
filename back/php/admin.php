@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-// Proteção da página
-if (!isset($_SESSION['nome']) || $_SESSION['tipo'] !== "comum") {
+if (!isset($_SESSION['nome']) || $_SESSION['tipo'] !== "admin") {
     $_SESSION['mensagem'] = "Acesso negado!";
     header("Location: login.php");
     exit;
 }
+
 include('conecta.php');
 
 // Pegando o usuário logado pelo nome (ou idealmente pelo ID, se armazenado na sessão)
@@ -22,14 +22,14 @@ $usuario = mysqli_fetch_assoc($query);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  
   
   <meta charset="UTF-8">
-  <title>Página Protegida</title>
+  <title>Página Adm</title>
 </head>
 <body>
    <?php
    include("mensagem.php");
    ?>
   
-
+<h3>OLÁ ADM</h3>
   <a href="edit.php?id=<?= $usuario['id']; ?>">Editar</a>
 
   <form action="sair.php" method="post">

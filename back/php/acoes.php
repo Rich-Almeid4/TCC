@@ -7,10 +7,19 @@ if (isset($_POST['criar'])) {
     $nome  = mysqli_real_escape_string($conn, trim($_POST['nome']));
     $senha = mysqli_real_escape_string($conn, trim($_POST['senha']));
     $email = mysqli_real_escape_string($conn, trim($_POST['email']));
-    $tipo  = mysqli_real_escape_string($conn, trim($_POST['tipo']));
+
+   if (empty($nome) || empty($email) || empty($senha)) {
+        $_SESSION['mensagem'] = 'Preencha todos os campos!';
+        header('Location: cadastro.php');
+        exit;
+    }
+
+    $tipo = isset($_POST['tipo']) && ($_POST['tipo'] === 'admin') ? 'admin' : 'comum';
 
     $sql = "INSERT INTO usuario (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha', '$tipo')";
     mysqli_query($conn, $sql);
+   
+ 
 
     if (mysqli_affected_rows($conn) > 0) {
         $_SESSION['mensagem'] = 'Usuário cadastrado!';

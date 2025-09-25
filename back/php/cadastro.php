@@ -22,18 +22,19 @@ session_start();
 <?php include('mensagem.php');?>
 <form action="acoes.php" method="POST">
     <label for="email">Email:</label>
-        <input autocomplete="off" type="email" id="email" name="email" placeholder="Email">
+        <input autocomplete="off" type="email" id="email" name="email" placeholder="Email" require>
     <label for="senha">Senha:</label>
-        <input autocomplete="off"id="senha"type="password" name="senha" id="" placeholder="Senha">
+        <input autocomplete="off"id="senha"type="password" name="senha" id="" placeholder="Senha" require>
     <label for="nome">Usuário:</label>
-        <input autocomplete="off"type="text" id="nome" name="nome" placeholder="Usuário">
-    <label for="tipo">Tipo:</label>
+        <input autocomplete="off"type="text" id="nome" name="nome" placeholder="Usuário" require>
+     <!-- <label for="tipo">Tipo:</label>
       <select name="tipo" id="tipo">
       <option value=""></option>
       <option value="comum">comum</option>
       <option value="admin">admin</option>
-    </select>
+    </select> -->
 <button type="submit" name="criar" class="">Cadastrar</button>
+<a href="login.php">Login</a>
 </form>
 </body>
 <footer>
