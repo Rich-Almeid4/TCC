@@ -1,0 +1,249 @@
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+a{
+  text-align: center;
+  text-decoration-line: none;
+  vertical-align: middle;
+}
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+  body, input { 
+    font-family: "Poppins", sans-serif; 
+}
+
+  .container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #fcebe1;
+    overflow: hidden;
+  }
+
+  /* ==== FORMS ==== */
+  .forms-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signin-signup {
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
+    transition: 1s ease-in-out;
+    z-index: 5;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 3rem;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    transition: 0.3s;
+  }
+
+  .sign-up-form { 
+    opacity: 0; 
+    z-index: 1; 
+}
+  .sign-in-form { 
+    z-index: 2; 
+}
+
+  .title {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #444;
+  }
+
+  .input-field {margin: 10px 0;height: 55px;position: relative;
+    max-width: 380px;
+    width: 100%;
+    background: #f0f0f0;
+    border-radius: 50px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    align-items: center;
+    border: 2px solid #8359d8; /* ADICIONADA BORDA */
+    transition: border 0.3s ease-in-out;
+  }
+
+  .input-field input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+  }
+  /* EFEITO AO CLICAR NO INPUT */
+  .input-field:focus-within {
+    border: 2px solid #67d7db;
+    box-shadow: 0 0 5px rgba(118, 88, 214, 0.3);
+  }
+
+  .input-field i { 
+    color: #888; 
+    text-align: center; 
+}
+  .input-field input {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+  }
+  .btn {
+    width: 150px;
+    height: 45px;
+    background-image:linear-gradient(-45deg, #79ffe0 0%, #7658d6 70%);
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+  }
+  .btn:hover { 
+    background-image: linear-gradient(120deg, #79ffe0 0%, #7658d6 70%); 
+  }
+  .btn-cadastro{
+    cursor: pointer;
+    color: #7658d6;
+  }
+  .btn-cadastro:hover{
+    color: #79ffe0;
+  }
+
+.social-text {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+}
+
+  .container::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    max-width: 1200px;
+    height: 180%;
+    background-image: url(../img/borboleta.jpg);
+    top: 50%;
+    right: 50%;
+    transform: translate(0%, -60%);
+    border-radius: 0% 0% 80% 0%;
+    transition: 1.5s ease-in-out;
+    z-index: 6;
+  }
+
+  .container.sign-up-mode::before {
+    transform: translate(100%, -60%);
+    right: 50%;
+    border-radius: 0% 0% 0% 80%;
+    width: 55%;
+    max-width: 1200px;
+  }
+
+.container.sign-up-mode .signin-signup {
+  left: 25%;
+}
+
+.container.sign-up-mode form.sign-up-form {
+  opacity: 1;
+  z-index: 2;
+}
+
+.container.sign-up-mode form.sign-in-form {
+  opacity: 0;
+  z-index: 1;
+}
+  @media (max-width: 1024px) {
+    .container::before,
+    .container.sign-up-mode::before {
+      width: 70%;
+      height: 160%;
+      max-width: 900px;
+      
+    }
+  }
+  @media (max-width: 770px) {
+  .container {
+    min-height: 900px;
+    height: 100vh;
+  }
+  .signin-signup {
+    width: 100%;
+    top: 80vh;
+    transform: translate(-50%, -100%);
+    transition: 1s 0.8s ease-in-out;
+  }
+
+  .signin-signup,
+  .container.sign-up-mode .signin-signup {
+    left: 50%;
+  }
+
+
+  .btn.transparent {
+    width: 110px;
+    height: 35px;
+    font-size: 0.7rem;
+  }
+
+  .container:before {
+    background-image: none;
+    width: 1500px;
+    height: 1500px;
+    transform: translateX(-50%);
+    left: 30%;
+    bottom: 68%;
+    right: initial;
+    top: initial;
+    transition: 8s ease-in-out;
+  }
+
+  .container.sign-up-mode:before {
+    transform: translate(-50%, 100%);
+    bottom: 32%;
+    right: initial;
+  }
+
+  .container.sign-up-mode .signin-signup {
+    top: 5%;
+    transform: translate(-50%, 0);
+  }
+}
+
+  @media (max-width: 768px) {
+    .container::before,
+    .container.sign-up-mode::before {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+    }
+  }
+
+  @media (max-width: 570px) {
+  form {
+    padding: 0 1.5rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+
+  }

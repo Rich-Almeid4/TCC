@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Perfil do Usuário</title>
+<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="icon" href="logo.svg" type="image/png">
+</head>
+<body>
+
+<header>
+ <img class="logo" src="logo.svg" alt="Logo Arthropoda">
+  <button class="btn-home" onclick="window.location.href='catalogo.html'">Tela principal</button>
+
+</header>
+
+<main>
+  <section class="perfil-info" aria-label="Informações básicas do usuário">
+
+    <img  class="foto-perfil" id="foto-perfil" aria-label="Foto do perfil do usuário">
+    <h2 id="username">Esau Elias</h2>
+    <p id="idgmail">Esauelias@gmail.com</p>
+  </section>
+
+  <section class="perfil-editar" aria-label="Formulário para editar perfil">
+    <h3>Editar Perfil</h3>
+    <form>
+      <div class="avatar-wrapper">
+        <div class="avatar-preview" aria-label="Avatar atual"></div>
+        <div>
+          <label for="avatar-upload">Alterar Avatar</label>
+          <input type="file" id="avatar-upload" name="avatar-upload" accept="image/*" />
+        </div>
+      </div>
+
+      <div>
+        <label for="inputName">Nome</label>
+        <input type="text" id="inputName" name="inputName" value="Esau Elias" />
+      </div>
+
+      <div>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" value="Esauelias@gmail.com" />
+      </div>
+
+      <div>
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" placeholder="Digite a nova senha" />
+      </div>
+
+      <div>
+        <label for="password-confirm">Confirmação de Senha</label>
+        <input type="password" id="password-confirm" name="password-confirm" placeholder="Confirme a nova senha" />
+      </div>
+
+      <div class="botoes">
+      </div> 
+      </form>
+       <button onclick="updateProfile()"class="btn-update">Salvar</button>
+ 
+  </section>
+</main>
+   <script>
+        function updateProfile() {
+            const inputName = document.getElementById("inputName").value;
+            if (inputName) {
+                document.getElementById("username").innerText = inputName;
+            }
+              const email = document.getElementById("email").value;
+            if (email) {
+                document.getElementById("idgmail").innerText = email;
+            }
+        }
+
+        document.getElementById("avatar-upload").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("foto-perfil").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

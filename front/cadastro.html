@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landngpage</title>
-    <link href="css/css/bootstrap.min.css" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login e Cadastro</title>
+  <link rel="stylesheet" href="src/css/cad.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
-
-<script src="css/js/bootstrap.bundle.min.js"></script>
-
 <body>
-    <h2>Criar sua conta</h2>
+  <div class="container">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <!-- Login -->
+        <form id="sign-in-form" class="sign-in-form">
+          <h2 class="title">Login</h2>
+          <div class="input-field"><i class="fas fa-user"></i><input type="text" placeholder="Nome de Usuário" required></div>
+          <div class="input-field"><i class="fas fa-lock"></i><input type="password" placeholder="Senha" required></div>
+          <input type="submit" value="Login" class="btn solid" onclick="window.location.href='catalogo.html'">
+          <p class="social-text">Não possui uma conta? <a type="submit" id="sign-up-btn" class="btn-cadastro">Cadastre-se</a></p>
+        </form>
 
-    <input type="text" id="user"><br><input type="password" id="senha">
-
-    <button id="logar">Cadastrar</button>
-    <a href="index.html">voltar</a>
+        <!-- Cadastro -->
+        <form id="sign-up-form" class="sign-up-form">
+          <h2 class="title">Cadastro</h2>
+          <div class="input-field"><i class="fas fa-user"></i><input type="text" placeholder="Nome de Usuário" required></div>
+          <div class="input-field"><i class="fas fa-envelope"></i><input type="email" placeholder="Email" required></div>
+          <div class="input-field"><i class="fas fa-lock"></i><input type="password" placeholder="Senha" required></div>
+          <input type="submit" value="Cadastrar" class="btn">
+          <p class="social-text">Já possui uma conta? <a type="submit" id="sign-in-btn" class="btn-cadastro">Entre</a></p>
+        </form>
+      </div>
+    </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    document.querySelector("#sign-up-btn").addEventListener("click", () => {
+      document.querySelector(".container").classList.add("sign-up-mode");
+    });
+    document.querySelector("#sign-in-btn").addEventListener("click", () => {
+      document.querySelector(".container").classList.remove("sign-up-mode");
+    });
+  </script>
 </body>
-<footer></footer>
-
 </html>
