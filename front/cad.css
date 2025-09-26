@@ -1,9 +1,5 @@
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-a{
-  text-align: center;
-  text-decoration-line: none;
-  vertical-align: middle;
-}
+
   * { 
     margin: 0; 
     padding: 0; 
@@ -17,7 +13,7 @@ a{
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background: #fcebe1;
+    background: #daceff;
     overflow: hidden;
   }
 
@@ -138,14 +134,21 @@ a{
     width: 50%;
     max-width: 1200px;
     height: 180%;
-    background-image: url(../img/borboleta.jpg);
+    background: linear-gradient(145deg,
+    #A0BAF4 30%,
+    #3876FD 60%,
+    #702DB9 95%);
+    
+
     top: 50%;
     right: 50%;
     transform: translate(0%, -60%);
     border-radius: 0% 0% 80% 0%;
     transition: 1.5s ease-in-out;
     z-index: 6;
+    
   }
+  
 
   .container.sign-up-mode::before {
     transform: translate(100%, -60%);
@@ -168,23 +171,37 @@ a{
   opacity: 0;
   z-index: 1;
 }
+.circulo-vidro{
+  position:absolute;
+  width:200vh; height:200vh;
+  top:-110vh; right:-65vh;
+  border-radius:50%;
+  overflow:hidden;
+  z-index: 3;
+  background:
+    radial-gradient(65% 65% at 45% 40%, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 70%),
+    rgba(255,255,255,.10);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  border:1px solid rgba(255,255,255,.26);
+  box-shadow: 0 32px 80px rgba(0,0,0,.26);
+}
   @media (max-width: 1024px) {
     .container::before,
     .container.sign-up-mode::before {
       width: 70%;
       height: 160%;
       max-width: 900px;
-      
     }
   }
-  @media (max-width: 770px) {
+  @media (max-width: 870px) {
   .container {
-    min-height: 900px;
+    min-height: 800px;
     height: 100vh;
   }
   .signin-signup {
     width: 100%;
-    top: 80vh;
+    top: 95%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }
@@ -194,6 +211,11 @@ a{
     left: 50%;
   }
 
+  .image {
+    width: 200px;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.6s;
+  }
 
   .btn.transparent {
     width: 110px;
@@ -202,7 +224,6 @@ a{
   }
 
   .container:before {
-    background-image: none;
     width: 1500px;
     height: 1500px;
     transform: translateX(-50%);
@@ -242,8 +263,28 @@ a{
     padding: 0 1.5rem;
   }
 
+  .image {
+    display: none;
+  }
   .container {
     padding: 1.5rem;
   }
 
+  .container:before {
+    bottom: 72%;
+    left: 50%;
+  }
+
+  .container.sign-up-mode:before {
+    bottom: 28%;
+    left: 50%;
+  }
+  }
+
+  @media (max-width: 480px) {
+    .container::before,
+    .container.sign-up-mode::before {
+      opacity: 0.15;
+      background-position: center;
+    }
   }
