@@ -140,15 +140,47 @@
       margin-bottom: 10px;
     }
 
+    .tooltip {
+    position: relative;
+    cursor: pointer;
+  }
+
+    .tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: rgba(118, 88, 214, 0.9);
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(-5px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+  }
+
+    .tooltip:hover::after {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+
+    .side-item.tooltip::after {
+    left: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     .card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #333;
     }
 
     .card p {

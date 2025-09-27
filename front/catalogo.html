@@ -9,15 +9,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+ <body>
   <nav class="sidebar">
     <div class="sidebar-content">
       <div class="user">
         <h1 class="name"><span class="item-name">Arthropoda</span></h1>
       </div>
       <ul class="side-items">
-        <li class="side-item"><a href="#"><i class="fa-solid fa-bookmark"></i>Salvos</a></li>
-        <li class="side-item"><a href="#"><i class="fa-solid fa-bell"></i>Notificações</a></li>
-        <li class="side-item"><a href="#"><i class="fa-solid fa-gear"></i>Configurações</a></li>
+        <li class="side-item" id="salvos"><a href="#"><i class="fa-solid fa-bookmark"></i>Salvos</a></li>
+        <li class="side-item" id="notificações"><a href="#"><i class="fa-solid fa-bell"></i>Notificações</a></li>
+        <li class="side-item" id="configurações"><a href="#"><i class="fa-solid fa-gear"></i>Configurações</a></li>
       </ul>
     </div>
   </nav>
@@ -138,6 +139,25 @@
         sidebar.classList.remove('open');
       }
     });
+
+  document.querySelector("#salvos").classList.add("tooltip");
+  document.querySelector("#salvos").setAttribute("data-tooltip", "Abrir os salvos");
+
+  document.querySelector("#notificações").classList.add("tooltip");
+  document.querySelector("#notificações").setAttribute("data-tooltip", "Ver suas borboletas salvas");
+
+  document.querySelector("#configurações").classList.add("tooltip");
+  document.querySelector("#configurações").setAttribute("data-tooltip", "Abrir configurações");
+
+  document.querySelector(".profile-btn").classList.add("tooltip");
+  document.querySelector(".profile-btn").setAttribute("data-tooltip", "Ir para o perfil");
+
+  document.querySelector("#menu-toggle").classList.add("tooltip");
+  document.querySelector("#menu-toggle").setAttribute("data-tooltip", "Abrir menu");
+
+  document.querySelector("#back-to-top").classList.add("tooltip");
+  document.querySelector("#back-to-top").setAttribute("data-tooltip", "Voltar ao topo");
+
   </script>
 </body>
 </html>
