@@ -36,6 +36,7 @@ $usuario = mysqli_fetch_array($query);
   </head>
   <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <form action="acoes.php" method="POST">
         <input type="hidden" name="usuario_id" value="<?= $usuario['id']; ?>">
         
@@ -48,8 +49,8 @@ $usuario = mysqli_fetch_array($query);
         <label>Email:</label>
         <input type="text" name="email" value="<?= $usuario['email']; ?>">
 
-        <button type="submit" name="update-comum">Salvar</button>
+        <button type="submit" name="update">Salvar</button>
     </form>
-    <a href="index.php">Voltar</a>
+    <a href="admin.php">Voltar</a>
   </body>
 </html>

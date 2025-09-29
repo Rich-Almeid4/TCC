@@ -9,12 +9,16 @@ if (!isset($_SESSION['nome']) || $_SESSION['tipo'] !== "comum") {
 }
 include('conecta.php');
 
+
+
 // Pegando o usuário logado pelo nome (ou idealmente pelo ID, se armazenado na sessão)
-$nome = $_SESSION['nome'];
-$sql = "SELECT * FROM usuario WHERE nome = '$nome' LIMIT 2";
+$usuario_id = $_SESSION['id'];
+$sql = "SELECT * FROM usuario WHERE id = '$usuario_id' LIMIT 1";
 $query = mysqli_query($conn, $sql);
 $usuario = mysqli_fetch_assoc($query);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -28,10 +32,40 @@ $usuario = mysqli_fetch_assoc($query);
    <?php
    include("mensagem.php");
    ?>
-  
+  <h2>Olá <?=$usuario['nome']?></h2>
 
+  <?php
+                    if (isset($_GET['id'])) {
+                    $usuario_id = mysqli_real_escape_string($conn, $_GET['id']);
+                    $sql = "SELECT * FROM `usuario` WHERE id='$usuario_id'";
+                    $query = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($query) > 0) {
+                    $usuario = mysqli_fetch_array($query);
+                    ?>
+                                    
+                      
+                      <?php
+                    }else{
+                        echo "<h5>Produto não encontrado!</h5>";
+                    }
+                }
+                        ?>
+  <table>
+  <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+        </tr>
+<tbody>
+    <tr>
+        <td><p><?=($usuario['nome']); ?></p></td>
+        <td><p><?=($usuario['email']); ?></p></td>
+    </tr>
+</tbody>
+</table>
   <a href="edit.php?id=<?= $usuario['id']; ?>">Editar</a>
-
+  <a href="">enviar mensagem</a>
   <form action="sair.php" method="post">
       <button type="submit">Sair</button>
   </form>

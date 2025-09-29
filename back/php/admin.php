@@ -6,14 +6,14 @@ if (!isset($_SESSION['nome']) || $_SESSION['tipo'] !== "admin") {
     header("Location: login.php");
     exit;
 }
-
 include('conecta.php');
 
 // Pegando o usuário logado pelo nome (ou idealmente pelo ID, se armazenado na sessão)
-$nome = $_SESSION['nome'];
-$sql = "SELECT * FROM usuario WHERE nome = '$nome' LIMIT 2";
+$usuario_id = $_SESSION['id'];
+$sql = "SELECT * FROM usuario WHERE id = '$usuario_id' LIMIT 1";
 $query = mysqli_query($conn, $sql);
 $usuario = mysqli_fetch_assoc($query);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,8 +29,12 @@ $usuario = mysqli_fetch_assoc($query);
    include("mensagem.php");
    ?>
   
-<h3>OLÁ ADM</h3>
-  <a href="edit.php?id=<?= $usuario['id']; ?>">Editar</a>
+<h3>Olá <?=$usuario['nome'];?></h3>
+
+  <a href="">Adicionar espécie</a><br>
+  <a href="">Adicionar documentos</a><br>
+  <a href="users.php">Usuarios</a><br>
+  <a href="edit-adm.php?id=<?= $usuario['id']; ?>">Editar</a>
 
   <form action="sair.php" method="post">
       <button type="submit">Sair</button>
