@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morpho menelaus - Detalhes</title>
+  <link rel="icon" href="logo.svg" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-image: linear-gradient(120deg, #CCBCFA 0%, #9485c0 70%);
+      min-height: 100vh;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.2rem 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      color: #8b7ab8;
+      font-weight: 600;
+    }
+
+    .header .scientific-name {
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
+
+    .back-btn {
+      background-image: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      padding: 0.7rem 1.3rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-image: linear-gradient(120deg, #9d79ff 0%, #7658d6 70%);
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .tooltip {
+      position: relative;
+      cursor: help;
+      border-bottom: 1px dotted #8b7ab8;
+    }
+
+    .tooltip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: rgba(118, 88, 214, 0.95);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .tooltip:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-12px);
+    }
+
+    .section-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .section-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: #8b7ab8;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-title i {
+      color: #7658d6;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      height: 350px;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      color: #7658d6;
+    }
+
+    .carousel-btn:hover {
+      background: white;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-btn.prev {
+      left: 15px;
+    }
+
+    .carousel-btn.next {
+      right: 15px;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+      background: #7658d6;
+      width: 30px;
+      border-radius: 5px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-item {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      border-radius: 12px;
+      padding: 1.2rem;
+      border-left: 4px solid #7658d6;
+      transition: all 0.3s ease;
+    }
+
+    .info-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-item .label {
+      font-size: 0.85rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+
+    .info-item .value {
+      font-size: 1.05rem;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .conservation-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      color: white;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .lifecycle-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .lifecycle-stage {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+      border-radius: 16px;
+      padding: 1.8rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      border-top: 4px solid #7658d6;
+    }
+
+    .lifecycle-stage:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .lifecycle-stage .stage-icon {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .lifecycle-stage h3 {
+      font-size: 1.3rem;
+      color: #8b7ab8;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .lifecycle-stage p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .article-content {
+      font-size: 1.05rem;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .article-content h3 {
+      font-size: 1.4rem;
+      color: #8b7ab8;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .article-content p {
+      margin-bottom: 1.3rem;
+      text-align: justify;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fff4e6 0%, #ffe8cc 100%);
+      border-left: 4px solid #ff9800;
+      padding: 1.3rem;
+      border-radius: 10px;
+      margin: 1.8rem 0;
+    }
+
+    .highlight-box strong {
+      color: #e65100;
+    }
+
+    .curiosity-grid {
+      display: grid;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .curiosity-item {
+      background: linear-gradient(135deg, #e8ecf1 0%, #f5f7fa 100%);
+      border-radius: 12px;
+      padding: 1.3rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: all 0.3s ease;
+      border-left: 4px solid #7658d6;
+    }
+
+    .curiosity-item:hover {
+      transform: translateX(8px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .curiosity-item .icon {
+      font-size: 1.4rem;
+      color: #7658d6;
+      flex-shrink: 0;
+    }
+
+    .curiosity-item p {
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .quiz-container {
+      margin-top: 1.5rem;
+    }
+
+    .quiz-question {
+      background: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+      color: white;
+      padding: 1.8rem;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .quiz-option {
+      background: #f8f9fa;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .quiz-option:hover {
+      background: #e9ecef;
+      border-color: #7658d6;
+      transform: translateX(5px);
+    }
+
+    .quiz-option.correct {
+      background: #d4edda;
+      border-color: #28a745;
+      color: #155724;
+    }
+
+    .quiz-option.incorrect {
+      background: #f8d7da;
+      border-color: #dc3545;
+      color: #721c24;
+    }
+
+    .quiz-option:disabled {
+      cursor: not-allowed;
+    }
+
+    .quiz-feedback {
+      margin-top: 1.2rem;
+      padding: 1.2rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .quiz-feedback.correct {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .quiz-feedback.incorrect {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .quiz-result {
+      background: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+      color: white;
+      padding: 2.5rem;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .quiz-result h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-result .score {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 1rem 0;
+    }
+
+    .restart-btn {
+      background: white;
+      color: #7658d6;
+      border: none;
+      border-radius: 10px;
+      padding: 0.9rem 1.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .restart-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-image: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 99;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 1024px) {
+      .lifecycle-timeline {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 1.3rem;
+      }
+
+      .section-card {
+        padding: 1.8rem 1.3rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lifecycle-timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-slide {
+        height: 250px;
+      }
+
+      .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 1rem;
+        right: 1rem;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <div>
+        <h1>
+          <i class="fas fa-butterfly"></i> 
+          <span class="tooltip" data-tooltip="Nome comum da espécie">Morpho Azul</span>
+          <span class="scientific-name tooltip" data-tooltip="Nome científico da espécie">Morpho menelaus</span>
+        </h1>
+      </div>
+      <button class="back-btn" onclick="window.location.href='catalogo.html'">
+        <i class="fas fa-arrow-left"></i> Voltar ao Catálogo
+      </button>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="section-card fade-in">
+      <span class="conservation-badge">
+        <i class="fas fa-leaf"></i> 
+        <span class="tooltip" data-tooltip="Status de conservação segundo IUCN">Pouco Preocupante</span>
+      </span>
+      
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label tooltip" data-tooltip="Classificação taxonômica">Classe</div>
+          <div class="value">Insecta</div>
+        </div>
+        <div class="info-item">
+          <div class="label tooltip" data-tooltip="Ordem taxonômica">Ordem</div>
+          <div class="value">Lepidoptera</div>
+        </div>
+        <div class="info-item">
+          <div class="label tooltip" data-tooltip="Família taxonômica">Família</div>
+          <div class="value">Nymphalidae</div>
+        </div>
+        <div class="info-item">
+          <div class="label tooltip" data-tooltip="Distância entre as pontas das asas">Envergadura</div>
+          <div class="value">12-20 cm</div>
+        </div>
+        <div class="info-item">
+          <div class="label tooltip" data-tooltip="Ambiente natural onde vive">Habitat</div>
+          <div class="value">Florestas Tropicais</div>
+        </div>
+        <div class="info-item">
+          <div class="label tooltip" data-tooltip="Dieta principal da espécie">Alimentação</div>
+          <div class="value">Frutas fermentadas</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card fade-in">
+      <h2 class="section-title">
+        <i class="fas fa-images"></i> 
+        <span class="tooltip" data-tooltip="Imagens da espécie em diferentes ângulos">Galeria de Imagens</span>
+      </h2>
+      <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="/placeholder.svg?height=350&width=600" alt="Morpho se alimentando">
+          </div>
+          <div class="carousel-slide">
+            <img src="/placeholder.svg?height=350&width=600" alt="Asas abertas">
+          </div>
+          <div class="carousel-slide">
+            <img src="/placeholder.svg?height=350&width=600" alt="Habitat natural">
+          </div>
+          <div class="carousel-slide">
+            <img src="/placeholder.svg?height=350&width=600" alt="Detalhe das escamas">
+          </div>
+        </div>
+        <button class="carousel-btn prev" onclick="moveCarousel(-1)">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-btn next" onclick="moveCarousel(1)">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="carousel-indicators" id="carouselIndicators"></div>
+    </section>
+
+    <section class="section-card fade-in">
+      <h2 class="section-title">
+        <i class="fas fa-sync-alt"></i> 
+        <span class="tooltip" data-tooltip="Estágios de desenvolvimento da borboleta">Ciclo de Vida</span>
+      </h2>
+      <div class="lifecycle-timeline">
+        <div class="lifecycle-stage">
+          <div class="stage-icon">🥚</div>
+          <h3 class="tooltip" data-tooltip="Primeira fase do desenvolvimento">Ovo</h3>
+          <p>A fêmea deposita ovos esverdeados na parte inferior das folhas. Período de incubação: 7-10 dias.</p>
+        </div>
+        <div class="lifecycle-stage">
+          <div class="stage-icon">🐛</div>
+          <h3 class="tooltip" data-tooltip="Segunda fase do desenvolvimento">Lagarta</h3>
+          <p>Lagartas marrom-avermelhadas com pelos urticantes. Alimentam-se de folhas por 4-6 semanas.</p>
+        </div>
+        <div class="lifecycle-stage">
+          <div class="stage-icon">🏺</div>
+          <h3 class="tooltip" data-tooltip="Terceira fase do desenvolvimento">Crisálida</h3>
+          <p>Pupa verde-clara suspensa em galhos. Metamorfose completa ocorre em 2-3 semanas.</p>
+        </div>
+        <div class="lifecycle-stage">
+          <div class="stage-icon">🦋</div>
+          <h3 class="tooltip" data-tooltip="Fase adulta final">Adulto</h3>
+          <p>Borboleta adulta com asas azul-metálico. Vive 2-3 meses dedicando-se à reprodução.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card fade-in">
+      <h2 class="section-title">
+        <i class="fas fa-book-open"></i> 
+        <span class="tooltip" data-tooltip="Informações detalhadas sobre a espécie">Sobre a Espécie</span>
+      </h2>
+      <div class="article-content">
+        <p>
+          A <em>Morpho menelaus</em>, conhecida popularmente como Morpho Azul, é uma espécie de lepidóptero da família Nymphalidae, endêmica das florestas tropicais da América do Sul, com distribuição concentrada na Bacia Amazônica. Esta espécie representa um dos exemplos mais notáveis de coloração estrutural no reino animal.
+        </p>
+
+        <h3 class="tooltip" data-tooltip="Explicação científica da coloração">Coloração Estrutural</h3>
+        <p>
+          A coloração azul-metálico característica não resulta de pigmentos, mas de um fenômeno óptico denominado <strong>interferência construtiva</strong>. As escamas das asas possuem estruturas nanométricas em camadas que refletem comprimentos de onda específicos da luz, produzindo o azul iridescente. Este mecanismo de coloração estrutural tem inspirado pesquisas em nanotecnologia e desenvolvimento de materiais fotônicos.
+        </p>
+
+        <div class="highlight-box">
+          <strong>Aplicação Tecnológica:</strong> As nanoestruturas das asas da Morpho menelaus têm sido estudadas para desenvolvimento de sensores ópticos, dispositivos anti-falsificação e displays de baixo consumo energético.
+        </div>
+
+        <h3 class="tooltip" data-tooltip="Padrões comportamentais da espécie">Comportamento e Ecologia</h3>
+        <p>
+          Os indivíduos adultos apresentam comportamento diurno, com atividade concentrada nas camadas médias e inferiores da floresta. Os machos exibem territorialidade, patrulhando áreas específicas através de voos rápidos e erráticos. A espécie demonstra fototropismo positivo para objetos azuis, característica explorada em estudos populacionais.
+        </p>
+
+        <p>
+          A dieta dos adultos consiste principalmente em frutas em decomposição, seiva de árvores e fluidos corporais de animais mortos, fontes ricas em açúcares fermentados e sais minerais essenciais. Este comportamento alimentar difere significativamente do padrão nectarívoro observado em muitos lepidópteros.
+        </p>
+
+        <h3 class="tooltip" data-tooltip="Papel no ecossistema">Importância Ecológica</h3>
+        <p>
+          Embora não sejam polinizadores primários, as Morpho menelaus desempenham papel relevante como bioindicadores de qualidade ambiental. Sua presença indica florestas em bom estado de conservação. Adicionalmente, integram a cadeia trófica como presa de aves, répteis e aracnídeos.
+        </p>
+
+        <h3 class="tooltip" data-tooltip="Status de conservação atual">Conservação</h3>
+        <p>
+          Atualmente classificada como "Pouco Preocupante" (LC) pela IUCN, a espécie enfrenta pressões crescentes devido ao desmatamento e fragmentação de habitat. A preservação de corredores ecológicos e áreas protegidas é fundamental para a manutenção de populações viáveis a longo prazo.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-card fade-in">
+      <h2 class="section-title">
+        <i class="fas fa-lightbulb"></i> 
+        <span class="tooltip" data-tooltip="Fatos interessantes sobre a espécie">Curiosidades Científicas</span>
+      </h2>
+      <div class="curiosity-grid">
+        <div class="curiosity-item">
+          <div class="icon"><i class="fas fa-eye"></i></div>
+          <p>A reflexão das asas pode ser detectada a distâncias superiores a 1 km, facilitando a comunicação intraespecífica.</p>
+        </div>
+        <div class="curiosity-item">
+          <div class="icon"><i class="fas fa-palette"></i></div>
+          <p>A face ventral das asas apresenta coloração críptica marrom com ocelos, proporcionando camuflagem em repouso.</p>
+        </div>
+        <div class="curiosity-item">
+          <div class="icon"><i class="fas fa-venus-mars"></i></div>
+          <p>O dimorfismo sexual é evidente: machos apresentam coloração mais intensa, utilizada em displays de corte e defesa territorial.</p>
+        </div>
+        <div class="curiosity-item">
+          <div class="icon"><i class="fas fa-shield-alt"></i></div>
+          <p>As larvas possuem tricomas urticantes que liberam compostos irritantes como mecanismo de defesa contra predadores.</p>
+        </div>
+        <div class="curiosity-item">
+          <div class="icon"><i class="fas fa-clock"></i></div>
+          <p>A frequência de batimento alar pode atingir 20 Hz, criando um efeito estroboscópico que dificulta a predação.</p>
+        </div>
+        <div class="curiosity-item">
+          <div class="icon"><i class="fas fa-microscope"></i></div>
+          <p>Pesquisas em biomimética utilizam as nanoestruturas alares para desenvolver sensores químicos e materiais ópticos avançados.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card fade-in">
+      <h2 class="section-title">
+        <i class="fas fa-question-circle"></i> 
+        <span class="tooltip" data-tooltip="Teste seus conhecimentos sobre o conteúdo">Avaliação de Conhecimento</span>
+      </h2>
+      <div class="quiz-container" id="quiz-container">
+        
+      </div>
+    </section>
+  </div>
+
+  <button class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+
+    function createIndicators() {
+      const indicatorsContainer = document.getElementById('carouselIndicators');
+      for (let i = 0; i < totalSlides; i++) {
+        const indicator = document.createElement('div');
+        indicator.className = 'indicator';
+        if (i === 0) indicator.classList.add('active');
+        indicator.onclick = () => goToSlide(i);
+        indicatorsContainer.appendChild(indicator);
+      }
+    }
+
+    function updateCarousel() {
+      const track = document.getElementById('carouselTrack');
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      document.querySelectorAll('.indicator').forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function moveCarousel(direction) {
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = totalSlides - 1;
+      if (currentSlide >= totalSlides) currentSlide = 0;
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+
+    // carousel
+    setInterval(() => {
+      moveCarousel(1);
+    }, 5000);
+
+    createIndicators();
+
+    const quizData = [
+      {
+        question: "Qual é o fenômeno responsável pela cor azul das asas da Morpho menelaus?",
+        options: [
+          "Pigmentação azul convencional",
+          "Interferência construtiva (coloração estrutural)",
+          "Bioluminescência",
+          "Absorção de luz ultravioleta"
+        ],
+        correct: 1
+      },
+      {
+        question: "Qual é a envergadura típica da Morpho Azul?",
+        options: [
+          "5-8 cm",
+          "12-20 cm",
+          "25-30 cm",
+          "35-40 cm"
+        ],
+        correct: 1
+      },
+      {
+        question: "Do que as Morpho menelaus adultas se alimentam principalmente?",
+        options: [
+          "Néctar de flores",
+          "Folhas verdes frescas",
+          "Frutas fermentadas e seiva",
+          "Pólen e mel"
+        ],
+        correct: 2
+      },
+      {
+        question: "Quanto tempo dura aproximadamente o estágio de crisálida?",
+        options: [
+          "1-2 dias",
+          "2-3 semanas",
+          "2-3 meses",
+          "6-8 meses"
+        ],
+        correct: 1
+      },
+      {
+        question: "Qual é a função da coloração marrom na face ventral das asas?",
+        options: [
+          "Atrair parceiros reprodutivos",
+          "Absorver calor solar",
+          "Camuflagem e proteção contra predadores",
+          "Comunicação com outras borboletas"
+        ],
+        correct: 2
+      }
+    ];
+
+    // Quiz 
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    function loadQuiz() {
+      const container = document.getElementById('quiz-container');
+      
+      if (currentQuestion >= quizData.length) {
+        showResults();
+        return;
+      }
+
+      const question = quizData[currentQuestion];
+      answered = false;
+
+      container.innerHTML = `
+        <div class="quiz-question">
+          <strong>Questão ${currentQuestion + 1} de ${quizData.length}</strong><br>
+          ${question.question}
+        </div>
+        <div class="quiz-options">
+          ${question.options.map((option, index) => `
+            <button class="quiz-option" onclick="checkAnswer(${index})">
+              ${option}
+            </button>
+          `).join('')}
+        </div>
+        <div id="quiz-feedback"></div>
+      `;
+    }
+
+    function checkAnswer(selected) {
+      if (answered) return;
+      answered = true;
+
+      const question = quizData[currentQuestion];
+      const options = document.querySelectorAll('.quiz-option');
+      const feedback = document.getElementById('quiz-feedback');
+
+      options.forEach((option, index) => {
+        option.disabled = true;
+        if (index === question.correct) {
+          option.classList.add('correct');
+        }
+        if (index === selected && index !== question.correct) {
+          option.classList.add('incorrect');
+        }
+      });
+
+      if (selected === question.correct) {
+        score++;
+        feedback.innerHTML = '<div class="quiz-feedback correct"><i class="fas fa-check-circle"></i> Correto!</div>';
+      } else {
+        feedback.innerHTML = '<div class="quiz-feedback incorrect"><i class="fas fa-times-circle"></i> Incorreto. A resposta correta é: ' + question.options[question.correct] + '</div>';
+      }
+
+      setTimeout(() => {
+        currentQuestion++;
+        loadQuiz();
+      }, 2500);
+    }
+
+    function showResults() {
+      const container = document.getElementById('quiz-container');
+      const percentage = Math.round((score / quizData.length) * 100);
+      
+      let message = '';
+      let emoji = '';
+      
+      if (percentage === 100) {
+        message = 'Excelente! Você domina o conteúdo sobre a Morpho menelaus.';
+        emoji = '🏆';
+      } else if (percentage >= 80) {
+        message = 'Muito bom! Você compreendeu bem as informações apresentadas.';
+        emoji = '🌟';
+      } else if (percentage >= 60) {
+        message = 'Bom desempenho! Revise o conteúdo para aprofundar seus conhecimentos.';
+        emoji = '📚';
+      } else {
+        message = 'Recomenda-se revisar o conteúdo da página antes de tentar novamente.';
+        emoji = '🔍';
+      }
+
+      container.innerHTML = `
+        <div class="quiz-result">
+          <div style="font-size: 3.5rem; margin-bottom: 1rem;">${emoji}</div>
+          <h3>Avaliação Concluída</h3>
+          <div class="score">${score} / ${quizData.length}</div>
+          <p style="font-size: 1.15rem; margin-top: 1rem;">${percentage}% de acertos</p>
+          <p style="font-size: 1.05rem; margin-top: 0.5rem;">${message}</p>
+          <button class="restart-btn" onclick="restartQuiz()">
+            <i class="fas fa-redo"></i> Refazer Avaliação
+          </button>
+        </div>
+      `;
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+      loadQuiz();
+    }
+
+    // Back to Top 
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Fade-in 
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      observer.observe(el);
+    });
+
+    // Inicializar Quiz
+    loadQuiz();
+  </script>
+</body>
+</html>
