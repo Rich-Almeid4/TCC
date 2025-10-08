@@ -33,6 +33,7 @@ $usuario = mysqli_fetch_assoc($query);
    include("mensagem.php");
    ?>
   <h2>Olá <?=$usuario['nome']?></h2>
+  <img src="img/<?php echo $usuario['imagem']; ?>"><br>
 
   <?php
                     if (isset($_GET['id'])) {
@@ -65,6 +66,9 @@ $usuario = mysqli_fetch_assoc($query);
 </tbody>
 </table>
   <a href="edit.php?id=<?= $usuario['id']; ?>">Editar</a>
+    <a href="especie.php    ">catalogo</a>
+    <a href="favoritos.php">favoritos</a>
+
   <a href="">enviar mensagem</a>
   <form action="sair.php" method="post">
       <button type="submit">Sair</button>

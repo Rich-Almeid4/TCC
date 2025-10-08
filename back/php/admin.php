@@ -29,9 +29,11 @@ $usuario = mysqli_fetch_assoc($query);
    include("mensagem.php");
    ?>
   
-<h3>Olá <?=$usuario['nome'];?></h3>
+<h3>Olá <?=$usuario['nome'];?></h3> <img src="img/<?php echo $usuario['imagem']; ?>"><br>
 
-  <a href="">Adicionar espécie</a><br>
+<a href="insert_especie.php" class="btn btn-success mt-3">
+  <i class="bi bi-plus-circle"></i> Adicionar espécie
+</a><br>
   <a href="">Adicionar documentos</a><br>
   <a href="users.php">Usuarios</a><br>
   <a href="edit-adm.php?id=<?= $usuario['id']; ?>">Editar</a>

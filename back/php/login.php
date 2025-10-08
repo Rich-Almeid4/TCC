@@ -19,6 +19,7 @@ session_start();
     <input type="password" name="senha" placeholder="senha">
     <button type="submit" name="logar">Entrar</button>
   </form>
+  <a href="esqueci.php">Esqueci a senha</a>
     <a href="cadastro.php" target="_self">cadastrar</a>
   
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

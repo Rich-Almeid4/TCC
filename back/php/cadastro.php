@@ -33,6 +33,8 @@ session_start();
       <option value="comum">comum</option>
       <option value="admin">admin</option>
     </select> -->
+    <label for="imagem">Foto de perfil:</label>
+    <input type="file" name="imagem"> 
 <button type="submit" name="criar" class="">Cadastrar</button>
 <a href="login.php">Login</a>
 </form>

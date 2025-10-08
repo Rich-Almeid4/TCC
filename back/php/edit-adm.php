@@ -37,20 +37,24 @@ $usuario = mysqli_fetch_array($query);
   <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <form action="acoes.php" method="POST">
-        <input type="hidden" name="usuario_id" value="<?= $usuario['id']; ?>">
-        
-        <label>Nome:</label>
-        <input type="text" name="nome" value="<?= $usuario['nome']; ?>">
+  <form action="acoes.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="usuario_id" value="<?= $usuario['id']; ?>">
+    
+    <label>Nome:</label>
+    <input type="text" name="nome" value="<?= $usuario['nome']; ?>">
 
-        <label>Senha:</label>
-        <input type="text" name="senha" value="<?= $usuario['senha']; ?>">
+    <label>Senha:</label>
+    <input type="text" name="senha" value="<?= $usuario['senha']; ?>">
 
-        <label>Email:</label>
-        <input type="text" name="email" value="<?= $usuario['email']; ?>">
+    <label>Email:</label>
+    <input type="text" name="email" value="<?= $usuario['email']; ?>">
 
-        <button type="submit" name="update">Salvar</button>
-    </form>
+    <label>Imagem de Perfil:</label>
+    <input type="file" name="imagem">
+
+    <button type="submit" name="update">Salvar</button>
+</form>
+
     <a href="admin.php">Voltar</a>
   </body>
 </html>
