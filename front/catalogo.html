@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomePage</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="../css/config.css">
+  <link rel="icon" href="logo.svg" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="../back/js/config.js"></script>
+</head>
+<body>
+  <nav class="sidebar">
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <div class="logo-circle">
+          <img  class="logo" src="logo.svg" alt="Logo">
+        </div>
+        <h1 class="sidebar-title">Arthropoda</h1>
+      </div>
+
+      <div class="menu-section">
+        <h2 class="section-header">Pessoal</h2>
+        <ul class="side-items">
+          <li class="side-item" id="perfil">
+            <a href="../back/php/edit.php"><i class="fa-solid fa-user"></i><span>Perfil</span></a>
+          </li>
+          <li class="side-item" id="favoritos">
+            <a href="#"><i class="fa-solid fa-star"></i><span>Favoritos</span></a>
+          </li>
+          <li class="side-item" id="historico">
+            <a href="#"><i class="fa-solid fa-clock-rotate-left"></i><span>Histórico</span></a>
+          </li>
+          <li class="side-item" id="notificacoes">
+            <a href="#"><i class="fa-solid fa-bell"></i><span>Notificações</span></a>
+          </li>
+          <li class="side-item" id="configuracoes">
+            <a href="../back/php/edit.php"><i class="fa-solid fa-universal-access"></i><span>Configurações</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="menu-section">
+        <h2 class="section-header">Explore</h2>
+        <ul class="side-items">
+          <li class="side-item" id="descobrir">
+            <a href="#"><i class="fa-solid fa-compass"></i><span>Descobrir espécie</span></a>
+          </li>
+          <li class="side-item" id="especies">
+            <a href="#"><i class="fa-solid fa-book"></i><span>Espécies</span></a>
+          </li>
+          <li class="side-item" id="artigos">
+            <a href="#"><i class="fa-solid fa-flask"></i><span>Artigos científicos</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="top-bar">
+      <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div class="search-bar"><input type="text" placeholder="Pesquisar borboletas..."></div>
+      <button class="profile-btn" onclick="window.location.href='perfil.html'"><i class="fa-solid fa-circle-user"></i></button>
+    </div>
+
+    <div class="cards-container" id="cards-container">
+      <div class="card">
+        <img src="img/borb-1.jpg" alt="Imagem Card 1">
+        <h3>Borboleta 1</h3>
+        <p>Descrição breve do card 1.</p>
+        <button onclick="window.location.href='detalhes.html'">Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-2.jpg" alt="Imagem Card 2">
+        <h3>Borboleta 2</h3>
+        <p>Um texto simples para explicar o conteúdo do card.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-3.jpg" alt="Imagem Card 3">
+        <h3>Borboleta 3</h3>
+        <p>Mais um exemplo de card, adaptável ao layout.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-4.jpg" alt="Imagem Card 4">
+        <h3>Borboleta 4</h3>
+        <p>Este é responsivo, se ajusta no celular também.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-5.jpg" alt="Imagem Card 5">
+        <h3>Borboleta 5</h3>
+        <p>Mais conteúdo para a segunda linha de cards.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-6.png" alt="Imagem Card 6">
+        <h3>Borboleta 6</h3>
+        <p>Este card adiciona mais opções na tela.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-7.jpg" alt="Imagem Card 7">
+        <h3>Borboleta 7</h3>
+        <p>Organizado de forma automática pelo grid.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-8.jpg" alt="Imagem Card 8">
+        <h3>Borboleta 8</h3>
+        <p>Pronto para ser clicado!</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-9.jpg" alt="Imagem Card 9">
+        <h3>Borboleta 9</h3>
+        <p>Mais conteúdo para preencher bem a tela.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-10.jpg" alt="Imagem Card 10">
+        <h3>Borboleta 10</h3>
+        <p>Outro card para completar a grade.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-11.jpg" alt="Imagem Card 11">
+        <h3>Borboleta 11</h3>
+        <p>Podem haver quantos cards você quiser.</p>
+        <button>Saiba mais</button>
+      </div>
+
+      <div class="card">
+        <img src="img/borb-12.jpg" alt="Imagem Card 12">
+        <h3>Borboleta 12</h3>
+        <p>Ótimo para exibir produtos ou conteúdos.</p>
+        <button>Saiba mais</button>
+      </div>
+    </div>
+  </main>
+
+  <button class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    function carregarBorboletas() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'data/borboletas.xml', true);
+      
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          const xmlDoc = xhr.responseXML;
+          const borboletas = xmlDoc.getElementsByTagName('borboleta');
+          const container = document.getElementById('cards-container');
+          
+          // Limpa o container
+          container.innerHTML = '';
+          
+          // Cria um card para cada borboleta
+          for (let i = 0; i < borboletas.length; i++) {
+            const borboleta = borboletas[i];
+            const id = borboleta.getAttribute('id');
+            const nome = borboleta.getElementsByTagName('nome')[0].textContent;
+            const descricao = borboleta.getElementsByTagName('descricao')[0].textContent;
+            const imagem = borboleta.getElementsByTagName('imagem')[0].textContent;
+            
+            // Cria o card
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+              <img src="${imagem}" alt="${nome}">
+              <h3>${nome}</h3>
+              <p>${descricao}</p>
+              <button onclick="window.location.href='detalhes.html?id=${id}'">Saiba mais</button>
+            `;
+            
+            container.appendChild(card);
+          }
+        } else {
+          console.error('Erro ao carregar XML:', xhr.status);
+        }
+      };
+      
+      xhr.onerror = function() {
+        console.error('Erro na requisição AJAX');
+      };
+      
+      xhr.send();
+    }
+    
+    window.addEventListener('DOMContentLoaded', carregarBorboletas);
+
+
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+
+    // Added active state functionality
+    const sideItems = document.querySelectorAll('.side-item');
+    sideItems.forEach(item => {
+      item.addEventListener('click', () => {
+        sideItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+
+    document.querySelector("#perfil").classList.add("tooltip");
+    document.querySelector("#perfil").setAttribute("data-tooltip", "Ver seu perfil");
+
+    document.querySelector("#favoritos").classList.add("tooltip");
+    document.querySelector("#favoritos").setAttribute("data-tooltip", "Ver seus favoritos");
+
+    document.querySelector("#historico").classList.add("tooltip");
+    document.querySelector("#historico").setAttribute("data-tooltip", "Ver seu histórico");
+
+    document.querySelector("#notificacoes").classList.add("tooltip");
+    document.querySelector("#notificacoes").setAttribute("data-tooltip", "Ver notificações");
+
+    document.querySelector("#configuracoes").classList.add("tooltip");
+    document.querySelector("#configuracoes").setAttribute("data-tooltip", "Abrir configurações");
+
+    document.querySelector("#descobrir").classList.add("tooltip");
+    document.querySelector("#descobrir").setAttribute("data-tooltip", "Descobrir novas espécies");
+
+    document.querySelector("#especies").classList.add("tooltip");
+    document.querySelector("#especies").setAttribute("data-tooltip", "Catálogo de espécies");
+
+    document.querySelector("#artigos").classList.add("tooltip");
+    document.querySelector("#artigos").setAttribute("data-tooltip", "Ler artigos científicos");
+
+    document.querySelector(".profile-btn").classList.add("tooltip");
+    document.querySelector(".profile-btn").setAttribute("data-tooltip", "Ir para o perfil");
+
+    document.querySelector("#menu-toggle").classList.add("tooltip");
+    document.querySelector("#menu-toggle").setAttribute("data-tooltip", "Abrir menu");
+
+    document.querySelector("#back-to-top").classList.add("tooltip");
+    document.querySelector("#back-to-top").setAttribute("data-tooltip", "Voltar ao topo");
+
+  </script>
+</body>
+</html>
