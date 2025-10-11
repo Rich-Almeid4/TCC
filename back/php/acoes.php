@@ -145,6 +145,8 @@ if (isset($_POST['delete'])){
     }
 
 }
+
+
 // INSERT-borboletas
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -306,5 +308,41 @@ if (isset($_POST['remover-favorito'])) {
         $_SESSION['mensagem'] = "Erro ao remover favorito: " . mysqli_error($conn);
     }
     header("Location: favoritos.php");
+    exit;
+}
+
+// --- CADASTRAR ARTIGO ---
+if (isset($_POST['upload_artigo'])) {
+    $titulo = mysqli_real_escape_string($conn, $_POST['titulo']);
+    $autor = mysqli_real_escape_string($conn, $_POST['autor']);
+
+    if (isset($_FILES['arquivo']) && $_FILES['arquivo']['error'] === UPLOAD_ERR_OK) {
+        $extensao = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
+
+        // Aceita apenas PDF por segurança
+        if (strtolower($extensao) !== 'pdf') {
+            $_SESSION['mensagem'] = 'Somente arquivos PDF são permitidos!';
+            header("Location: upload_artigo.php");
+            exit;
+        }
+
+        $novo_nome = uniqid() . '.' . $extensao;
+        $destino = 'documentos/' . $novo_nome;
+
+        if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $destino)) {
+            $sql = "INSERT INTO artigo (titulo, autor, caminho_arquivo) VALUES ('$titulo', '$autor', '$destino')";
+            if (mysqli_query($conn, $sql)) {
+                $_SESSION['mensagem'] = 'Artigo enviado com sucesso!';
+            } else {
+                $_SESSION['mensagem'] = 'Erro ao salvar no banco de dados: ' . mysqli_error($conn);
+            }
+        } else {
+            $_SESSION['mensagem'] = 'Erro ao mover o arquivo!';
+        }
+    } else {
+        $_SESSION['mensagem'] = 'Nenhum arquivo enviado!';
+    }
+
+    header("Location: upload_artigo.php");
     exit;
 }

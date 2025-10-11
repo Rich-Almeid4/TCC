@@ -36,15 +36,14 @@ CREATE TABLE galeria_imagens (
     data_upload DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_especie) REFERENCES especie(id)
 );
-
-
-CREATE TABLE artigo(
+CREATE TABLE artigo (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(200) NOT NULL,
-    conteudo TEXT NOT NULL,
     autor VARCHAR(100),
+    caminho_arquivo VARCHAR(255), -- Caminho do PDF ou outro
     data_publicacao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
 
 CREATE TABLE favorito(
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -55,14 +54,6 @@ CREATE TABLE favorito(
     FOREIGN KEY (id_usuario) REFERENCES usuario(id),
     FOREIGN KEY (id_especie) REFERENCES especie(id),
     FOREIGN KEY (id_artigo) REFERENCES artigo(id)
-);
-
-CREATE TABLE mensagem(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    id_usuario INT,
-    texto TEXT NOT NULL,
-    data_envio DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id)
 );
 
 CREATE TABLE historico (

@@ -28,6 +28,13 @@ $query = mysqli_query($conn, $sql);
 <title>Meus Favoritos</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<header>
+
+<?php
+include('mensagem.php');
+?>
+
+</header>
 <body class="p-4">
 <a href="index.php" class="btn btn-secondary mb-4">&larr; Voltar</a>
 
