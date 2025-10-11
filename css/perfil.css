@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+a {
+  text-decoration-color: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0; 
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #CCBCFA 0%, #a386ff 100%);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: #5a4696cc;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 0 10px #d3c1ff;
+}
+
+header .logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Monarch_Butterfly_Danaus_plexippus_Male_Mating_2.jpg/1200px-Monarch_Butterfly_Danaus_plexippus_Male_Mating_2.jpg') no-repeat center;
+  background-size: cover;
+}
+
+header button {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+header .btn-home {
+  background: #a990e7;
+  box-shadow: 0 0 5px #93a0f7;
+  color: #fff;
+}
+
+header .btn-home:hover {
+  background: #5930cc;
+  box-shadow: 0 0 15px #7d6aec;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  padding: 40px 60px;
+  gap: 50px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Informações do perfil */
+.perfil-info {
+  width: 300px;
+  background: rgba(255 255 255 / 0.15);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255 255 255 / 0.3);
+}
+
+.perfil-info .foto-perfil {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 25px auto;
+  border-radius: 50%;
+  background-image: url('icone-de-avatar-cinza.png');
+  background-size: cover;
+  box-shadow: 0 0 15px rgba(255 255 255 / 0.6);
+  object-fit: cover;
+}
+
+.perfil-info h2 {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.perfil-info p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* Formulário de edição do perfil */
+.perfil-editar {
+  flex: 1;
+  background: rgba(255 255 255 / 0.15);
+  border-radius: 20px;
+  padding: 30px 40px;
+  box-shadow: 0 0 30px rgba(255 255 255 / 0.3);
+  color: #fff;
+  max-width: 600px;
+}
+
+.perfil-editar h3 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #6a3ce2;
+  padding-bottom: 6px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: rgba(255 255 255 / 0.3);
+  color: #241f1f80;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="file"]:focus {
+  background: #ffffff80;
+}
+
+/* Botões principais */
+.botoes {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.btn-update {
+  background-color: #6a3ce2;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 15px #7d6aec;
+  transition: background-color 0.3s ease;
+}
+
+.btn-update:hover {
+  background-color: #5930cc;
+}
+
+/* Avatar dentro do formulário */
+.avatar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/600px-Profile_avatar_placeholder_large.png') no-repeat center;
+  background-size: cover;
+  box-shadow: 0 0 10px rgba(255 255 255 / 0.6);
+}
+
+/* Seção de configurações */
+.configuracoes-section {
+  background-color: rgba(255 255 255 / 0.15);
+  border-radius: 25px;
+  padding: 35px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 30px rgba(255 255 255 / 0.3);
+}
+
+.configuracoes-section h3 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #6a3ce2;
+  padding-bottom: 6px;
+}
+
+.settings-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px 16px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.tab-btn:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.tab-btn.active {
+  background-color: white;
+  color: #7658d6;
+  font-weight: 600;
+  border-color: #7658d6;
+}
+
+.settings-content {
+  display: none;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.settings-content.active {
+  display: flex;
+}
+
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.settings-group-title {
+  color: #7658d6;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(118, 88, 214, 0.3);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.setting-item:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateX(3px);
+}
+
+.setting-item > label:first-child {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+}
+
+.setting-item select {
+  padding: 6px 12px;
+  border: 2px solid #baa9f5;
+  border-radius: 8px;
+  background-color: white;
+  color: #333;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.setting-item select:focus {
+  outline: none;
+  border-color: #7658d6;
+  box-shadow: 0 0 8px rgba(118, 88, 214, 0.3);
+}
+
+/* Checkboxes personalizados no tema roxo */
+.custom-checkbox {
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: white;
+  border: 2px solid #baa9f5;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.custom-checkbox:hover .checkmark {
+  border-color: #7658d6;
+  box-shadow: 0 0 8px rgba(118, 88, 214, 0.3);
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-image: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+  border-color: #7658d6;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-checkbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.btn-save-settings {
+  margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 1300px) {
+  .cards-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1050px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    padding-left: 0;
+  }
+  .sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 1000;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .search-bar {
+    margin-top: 3%;
+    margin-bottom: 100px;
+    padding: 0 12px;
+  }
+
+  .configuracoes-section {
+    padding: 25px 20px;
+    max-width: 100%;
+  }
+
+  .settings-tabs {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tab-btn {
+    width: 100%;
+  }
+
+  .setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .setting-item select,
+  .custom-checkbox {
+    align-self: flex-end;
+  }
+
+  .setting-item select {
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+    padding: 30px 20px;
+    align-items: center;
+    gap: 40px;
+  }
+  .perfil-info {
+    width: 80%;
+  }
+  .perfil-editar {
+    max-width: 100%;
+    width: 100%;
+    padding: 30px 20px;
+  }
+  .avatar-wrapper {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .avatar-preview {
+    width: 140px;
+    height: 140px;
+  }
+}
