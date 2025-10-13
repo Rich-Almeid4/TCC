@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['nome']) || $_SESSION['tipo'] !== "admin") {
+    $_SESSION['mensagem'] = "Acesso negado!";
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

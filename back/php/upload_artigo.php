@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['nome']) || $_SESSION['tipo'] !== "admin") {
+    $_SESSION['mensagem'] = "Acesso negado!";
+    header("Location: login.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +15,7 @@ session_start();
     <title>Upload de Artigo</title>
 </head>
 <body>
+    <a href="admin.php">Voltar</a>
     <h2>Enviar novo artigo</h2>
 
     <?php if (isset($_SESSION['mensagem'])): ?>

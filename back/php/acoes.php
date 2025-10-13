@@ -213,7 +213,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $comportamento = mysqli_real_escape_string($conn, $_POST['comportamento']);
         $status_conservacao = mysqli_real_escape_string($conn, $_POST['status_conservacao']);
 
-        // Atualiza a imagem se o usuário enviar uma nova
         $update_imagem = "";
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
             $ext = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
@@ -255,6 +254,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['acao']) && $_POST['acao'] === 'excluir') {
         $id = (int) $_POST['id'];
 
+ $sql_delete_favoritos = "DELETE FROM favorito WHERE id_especie = $id";
+    mysqli_query($conn, $sql_delete_favoritos);
+
+
         $sql = "DELETE FROM especie WHERE id = $id";
 
         if (mysqli_query($conn, $sql)) {
@@ -263,7 +266,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['mensagem'] = "Erro ao excluir: " . mysqli_error($conn);
         }
 
-        header("Location: especie.php");
+        header("Location: edit_especie.php");
         exit;
     }
 }
@@ -332,17 +335,93 @@ if (isset($_POST['upload_artigo'])) {
         if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $destino)) {
             $sql = "INSERT INTO artigo (titulo, autor, caminho_arquivo) VALUES ('$titulo', '$autor', '$destino')";
             if (mysqli_query($conn, $sql)) {
-                $_SESSION['mensagem'] = 'Artigo enviado com sucesso!';
+                  header("Location: admin.php");
+                    $_SESSION['mensagem'] = 'Artigo enviado com sucesso!';
+        exit;
+              
             } else {
+                header("Location: upload_artigo.php");
                 $_SESSION['mensagem'] = 'Erro ao salvar no banco de dados: ' . mysqli_error($conn);
+            exit;
             }
-        } else {
+        } else {      
+                      header("Location: upload_artigo.php");
             $_SESSION['mensagem'] = 'Erro ao mover o arquivo!';
+                        exit;
         }
     } else {
+                              header("Location: upload_artigo.php");
         $_SESSION['mensagem'] = 'Nenhum arquivo enviado!';
+                    exit;
+
     }
 
-    header("Location: upload_artigo.php");
+}
+// --- FAVORITAR ARTIGO ---
+if (isset($_POST['favoritar_artigo'])) {
+    if (!isset($_SESSION['id'])) {
+        $_SESSION['mensagem'] = "Você precisa estar logado para favoritar artigos.";
+        header("Location: login.php");
+        exit;
+    }
+
+    $id_usuario = $_SESSION['id'];
+    $id_artigo = (int) $_POST['id_artigo'];
+
+    // Evita duplicação
+    $check = mysqli_query($conn, "SELECT * FROM favorito_artigo WHERE id_usuario = '$id_usuario' AND id_artigo = '$id_artigo'");
+    if (mysqli_num_rows($check) == 0) {
+        $sql = "INSERT INTO favorito_artigo (id_usuario, id_artigo) VALUES ('$id_usuario', '$id_artigo')";
+        if (mysqli_query($conn, $sql)) {
+            header("Location: artigos.php");
+            $_SESSION['mensagem'] = "Artigo adicionado aos favoritos!";
+        exit;
+        } else {
+                        header("Location: artigos.php");
+            $_SESSION['mensagem'] = "Erro ao favoritar artigo: " . mysqli_error($conn);
+        exit;
+        }
+    } else {            header("Location: artigos.php");
+        $_SESSION['mensagem'] = "Esse artigo já está nos seus favoritos!";
+    exit;
+    }
+
+    header("Location: artigos.php?id=$id_artigo");
+    exit;
+}
+
+// --- REMOVER FAVORITO DE ARTIGO ---
+if (isset($_POST['remover-favorito-artigo'])) {
+    $id_favorito = (int) $_POST['id_favorito'];
+    $id_usuario = $_SESSION['id'];
+
+    $sql = "DELETE FROM favorito_artigo WHERE id = '$id_favorito' AND id_usuario = '$id_usuario'";
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['mensagem'] = "Artigo removido dos favoritos!";
+    } else {
+        $_SESSION['mensagem'] = "Erro ao remover artigo: " . mysqli_error($conn);
+    }
+
+    header("Location: favoritos.php");
+    exit;
+}
+// --- EXCLUIR ARTIGO ---
+if (isset($_POST['acao']) && $_POST['acao'] === 'excluir_artigo') {
+    $id = (int) $_POST['id'];
+
+    // 🔹 Exclui favoritos relacionados a esse artigo primeiro (para evitar erro de chave estrangeira)
+    $sql_delete_favoritos = "DELETE FROM favorito_artigo WHERE id_artigo = $id";
+    mysqli_query($conn, $sql_delete_favoritos);
+
+    // 🔹 Depois exclui o artigo em si
+    $sql = "DELETE FROM artigo WHERE id = $id";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['mensagem'] = "Artigo excluído com sucesso!";
+    } else {
+        $_SESSION['mensagem'] = "Erro ao excluir artigo: " . mysqli_error($conn);
+    }
+
+    header("Location: edit_artigo.php");
     exit;
 }

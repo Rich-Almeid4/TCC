@@ -31,12 +31,22 @@ $usuario = mysqli_fetch_assoc($query);
   
 <h3>Olá <?=$usuario['nome'];?></h3> <img src="img/<?php echo $usuario['imagem']; ?>"><br>
 
-<a href="insert_especie.php" class="btn btn-success mt-3">
-  <i class="bi bi-plus-circle"></i> Adicionar espécie
+<h6>funções admin</h6>
+
+<a href="insert_especie.php" >
+ Adicionar espécie
 </a><br>
-  <a href="upload_artigo.php">Adicionar documentos</a><br>
-  <a href="users.php">Usuarios</a><br>
-  <a href="edit-adm.php?id=<?= $usuario['id']; ?>">Editar</a>
+ <a href="edit_especie.php">Editar espécies</a><br>
+  <a href="upload_artigo.php">Adicionar artigos</a><br>
+  <a href="edit_artigo.php">Gerenciar artigos</a><br>
+  <a href="users.php">Usuarios</a>
+<br>
+<br>
+<h6>funções comuns</h6>
+ <a href="especie.php">catalogo - espécies</a><br>
+    <a href="artigos.php">catalogo - artigos</a><br>
+<a href="favoritos.php">Favoritos</a><br>
+  <a href="edit-adm.php?id=<?= $usuario['id']; ?>">Editar perfil</a>
 
   <form action="sair.php" method="post">
       <button type="submit">Sair</button>

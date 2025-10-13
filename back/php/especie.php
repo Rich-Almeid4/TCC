@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
+    header("Location: login.php");
+    exit;
+}
+
 include('conecta.php');
 ?>
 
@@ -16,7 +22,16 @@ include('conecta.php');
   ?>
 </header>
 <body class="p-4">
-<a href="index.php" class="btn btn-secondary mb-4">&larr; Voltar</a>
+  <?php
+// Define o destino do botão "Voltar"
+if (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin') {
+    $link_voltar = 'admin.php'; // Página do admin
+} else {
+    $link_voltar = 'index.php'; // Página inicial do usuário comum
+}
+?>
+<a href="<?= $link_voltar ?>" class="btn btn-secondary mb-4">&larr; Voltar</a>
+
 
 <h2>Espécies Cadastradas</h2>
 

@@ -66,7 +66,7 @@ $usuario = mysqli_fetch_assoc($query);
     </tr>
 </tbody>
 </table>
-  <a href="edit.php?id=<?= $usuario['id']; ?>">Editar</a><br>
+  <a href="edit.php?id=<?= $usuario['id']; ?>">Editar perfil</a><br>
     <a href="especie.php">catalogo - espécies</a><br>
     <a href="artigos.php">catalogo - artigos</a><br>
     <a href="favoritos.php">favoritos</a><br><br>
