@@ -1,0 +1,323 @@
+/* Criar CSS específico para favoritos.php (mesmo estilo do especie.css) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(120deg, #ccbcfa 0%, #9485c0 70%);
+  display: flex;
+  padding-left: 220px;
+  transition: all 0.3s ease-in-out;
+}
+
+main {
+  flex: 1;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto 40px;
+  gap: 10px;
+  position: relative;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: #eae2fd;
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-content {
+  padding: 12px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 10px;
+  margin-bottom: 30px;
+}
+
+.logo-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-title {
+  font-size: 1.3rem;
+  color: #7658d6;
+  font-weight: 600;
+}
+
+.menu-section {
+  margin-bottom: 30px;
+}
+
+.section-header {
+  font-size: 0.75rem;
+  color: #9d79ff;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.side-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.side-item {
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  background-image: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+  transition: all 0.3s ease;
+}
+
+.side-item:hover {
+  background-image: linear-gradient(-45deg, #8967e7 0%, #5939c4 70%);
+}
+
+.side-item.active {
+  background-image: linear-gradient(-45deg, #7658d6 0%, #5930cc 70%);
+  box-shadow: 0 4px 12px rgba(118, 88, 214, 0.4);
+}
+
+.side-item a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+.side-item i {
+  font-size: 1.1rem;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 10px;
+}
+
+.card {
+  border-radius: 25px;
+  border: 2px solid transparent;
+  background: linear-gradient(#eae2fd, #eae2fd) padding-box, linear-gradient(to right, #7998ff, #7658d6) border-box;
+  background-origin: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.3s ease-in-out;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.card button {
+  background-image: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  flex: 1;
+}
+
+.card button:hover {
+  background-image: linear-gradient(120deg, #9d79ff 0%, #7658d6 70%);
+}
+
+.favorite-btn {
+  background: rgba(255, 107, 107, 0.1) !important;
+  color: #ff6b6b !important;
+  border: 2px solid #ff6b6b !important;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+}
+
+.favorite-btn.favorited {
+  background: #ff6b6b !important;
+  color: white !important;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+  background-image: none !important;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-image: linear-gradient(120deg, #9d79ff 0%, #7658d6 70%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.profile-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-image: linear-gradient(120deg, #79a8ff 0%, #7658d6 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  border: none;
+  transition: 0.3s ease-in-out;
+}
+
+.profile-btn:hover {
+  transform: scale(1.1);
+}
+
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #7658d6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1100;
+}
+
+@media (max-width: 1300px) {
+  .cards-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1050px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  body {
+    padding-left: 0;
+  }
+  .sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 1000;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+  .profile-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+  .menu-toggle {
+    padding: 8px 10px;
+    font-size: 1rem;
+  }
+}

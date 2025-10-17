@@ -1,14 +1,7 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
-    header("Location: login.php");
-    exit;
-}
-
 include('conecta.php');
 
-// Usuário logado
 if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit;
@@ -16,7 +9,6 @@ if (!isset($_SESSION['id'])) {
 
 $id_usuario = $_SESSION['id'];
 
-// Busca favoritos do usuário
 $sql = "
 SELECT f.id AS favorito_id, e.* 
 FROM favorito f
@@ -28,119 +20,177 @@ $query = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Meus Favoritos</title>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  
-  <link rel="stylesheet" href="../../css/config.css"/>
-    <script src="../js/config.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Favoritos - Arthropoda</title>
+  <link rel="stylesheet" href="../css/especie.css">
+  <link rel="stylesheet" href="../../css/config.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<header>
+<body>
+  <?php include("mensagem.php"); ?>
+  
+  <nav class="sidebar" id="sidebar">
+      <div class="sidebar-content">
+        <div class="user">
+          <img class="logo" src="assets/logo.svg" alt="Logo Arthropoda">
+          <h1 class="name"><span class="item-name" id="title">Arthropoda</span></h1>
+        </div>
+        <ul class="side-items">
+          <li class="side-item"><a href="homepage.html"><i class="fa-solid fa-house"></i><span class="item-name">Home</span></a></li>
+          <li class="section-title">Pessoal</li>
+          <li class="side-item"><a href="edit.php"><i class="fa-solid fa-user"></i><span class="item-name">Perfil</span></a></li>
+          <li class="side-item"><a href="favoritos.php"><i class="fa-solid fa-star"></i><span class="item-name">Favoritos</span></a></li>
+          <li class="side-item"><a href="#"><i class="fa-solid fa-clock-rotate-left"></i><span class="item-name">Histórico</span></a></li>
+        
+          <li class="section-title">Explore</li>
+          <li class="side-item"><a href="#"><i class="fa-solid fa-compass"></i><span class="item-name">Descobrir espécie</span></a></li>
+          <li class="side-item"><a href="catalogo.html"><i class="fa-solid fa-book"></i><span class="item-name">Espécies</span></a></li>
+          <li class="side-item"><a href="artigos.html"><i class="fa-solid fa-flask"></i><span class="item-name">Artigos científicos</span></a></li>
+        </ul>
+        
+      </div>
+    </nav>
 
+  
+  <button class="toggle-btn" id="toggle-btn">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
 
-</header>
-<body class="p-4">
- <?php
-   include("mensagem.php");
-   ?>
-    <?php
-// Define o destino do botão "Voltar"
-if (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin') {
-    $link_voltar = 'admin.php'; // Página do admin
-} else {
-    $link_voltar = 'index.php'; // Página inicial do usuário comum
-}
-?>
-<a href="<?= $link_voltar ?>" class="btn btn-secondary mb-4">&larr; Voltar</a>
+  <main>
+    
+    <div class="top-bar">
+      <div style="flex: 1; text-align: center;">
+        <h2 style="color: white; margin: 0;">Meus Favoritos</h2>
+      </div>
+    </div>
 
+    <div class="cards-container">
+      <?php if (mysqli_num_rows($query) > 0): ?>
+        <?php while ($especie = mysqli_fetch_assoc($query)): ?>
+          <div class="card">
+            <?php if ($especie['imagem']): ?>
+              <img src="img/<?= htmlspecialchars($especie['imagem']) ?>" alt="<?= htmlspecialchars($especie['nome_comum']) ?>">
+            <?php else: ?>
+              <img src="img/placeholder.jpg" alt="Sem imagem">
+            <?php endif; ?>
+            
+            <h3><?= htmlspecialchars($especie['nome_comum']) ?></h3>
+            <p><?= htmlspecialchars(substr($especie['descricao'], 0, 100)) ?>...</p>
+            
+            <div class="card-actions">
+              <button onclick="window.location.href='especie_detalhe.php?id=<?= $especie['id'] ?>'">
+                Saiba mais
+              </button>
+              <form action="acoes.php" method="POST" style="margin: 0;">
+                <input type="hidden" name="id_favorito" value="<?= $especie['favorito_id'] ?>">
+                <button type="submit" name="remover-favorito" class="favorite-btn favorited" 
+                        title="Remover dos favoritos"
+                        onclick="return confirm('Deseja remover dos favoritos?')">
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        <?php endwhile; ?>
+      <?php else: ?>
+        <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+          <i class="fa-solid fa-heart-crack" style="font-size: 4rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 20px;"></i>
+          <h3 style="color: white; margin-bottom: 10px;">Nenhum favorito ainda</h3>
+          <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">
+            Explore o catálogo e adicione suas espécies favoritas!
+          </p>
+          <button onclick="window.location.href='especie.php'" 
+                  style="background-image: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%); 
+                         color: white; border: none; padding: 12px 24px; 
+                         border-radius: 10px; cursor: pointer; font-size: 1rem;">
+            Ir para o Catálogo
+          </button>
+        </div>
+      <?php endif; ?>
+    </div>
+  </main>
 
-<h2>Espécies Favoritas</h2>
+  <button class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-<?php if (mysqli_num_rows($query) > 0): ?>
-<table class="table table-striped">
-<thead>
-<tr>
-<th>Imagem</th>
-<th>Nome</th>
-<th>Detalhes</th>
-<th>Remover</th>
-</tr>
-</thead>
-<tbody>
-<?php while ($especie = mysqli_fetch_assoc($query)): ?>
-<tr>
-<td>
-<?php if ($especie['imagem']): ?>
-<img src="img/<?= htmlspecialchars($especie['imagem']) ?>" style="width:100px; border-radius:5px;">
-<?php else: ?>
-<span class="text-muted">Sem imagem</span>
-<?php endif; ?>
-</td>
-<td><?= htmlspecialchars($especie['nome_comum']) ?></td>
-<td><a href="especie_detalhe.php?id=<?= $especie['id'] ?>">Ver mais</a></td>
-<td>
-<form action="acoes.php" method="POST">
-<input type="hidden" name="id_favorito" value="<?= $especie['favorito_id'] ?>">
-<button type="submit" name="remover-favorito" class="btn btn-danger btn-sm">Remover</button>
-</form>
-</td>
-</tr>
-<?php endwhile; ?>
-</tbody>
-</table>
-<?php else: ?>
-<p>Você ainda não favoritou nenhuma espécie.</p>
-<?php endif; ?>
-<hr class="my-5">
+  <script src="../js/config.js"></script>
+  <script>
+    // Back to top button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-<h2>Artigos Favoritos</h2>
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const toggleIcon = toggleBtn.querySelector('i');
+    const body = document.body;
 
-<?php
-$sql_artigos = "
-SELECT fa.id AS favorito_id, a.*
-FROM favorito_artigo fa
-JOIN artigo a ON fa.id_artigo = a.id
-WHERE fa.id_usuario = '$id_usuario'
-ORDER BY fa.data_salvo DESC
-";
-$query_artigos = mysqli_query($conn, $sql_artigos);
-?>
+    let isOpen = true;
 
-<?php if (mysqli_num_rows($query_artigos) > 0): ?>
-<table class="table table-striped">
-<thead>
-<tr>
-<th>Título</th>
-<th>Autor</th>
-<th>Data</th>
-<th>Visualizar</th>
-<th>Remover</th>
-</tr>
-</thead>
-<tbody>
-<?php while ($artigo = mysqli_fetch_assoc($query_artigos)): ?>
-<tr>
-<td><?= htmlspecialchars($artigo['titulo']) ?></td>
-<td><?= htmlspecialchars($artigo['autor']) ?></td>
-<td><?= date('d/m/Y H:i', strtotime($artigo['data_publicacao'])) ?></td>
-<td><a href="artigos.php?id=<?= $artigo['id'] ?>" target="_blank">Abrir</a></td>
-<td>
-<form action="acoes.php" method="POST">
-<input type="hidden" name="id_favorito" value="<?= $artigo['favorito_id'] ?>">
-<button type="submit" name="remover-favorito-artigo" class="btn btn-danger btn-sm">Remover</button>
-</form>
-</td>
-</tr>
-<?php endwhile; ?>
-</tbody>
-</table>
-<?php else: ?>
-<p>Você ainda não favoritou nenhum artigo.</p>
-<?php endif; ?>
+    function toggleSidebar() {
+      if (window.innerWidth <= 800) {
+        // Comportamento mobile: abre/fecha completamente
+        sidebar.classList.toggle('open');
+      } else {
+        // Comportamento desktop: minimiza/expande
+        if (isOpen) {
+          sidebar.style.width = '55px';
+          body.style.paddingLeft = '55px';
+          toggleBtn.style.left = '40px';
+          toggleIcon.style.transform = 'rotate(0deg)';
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+          document.querySelectorAll('.item-name, .section-title').forEach(el => {
+            el.style.opacity = '0';
+            el.style.width = '0';
+            el.style.visibility = 'hidden';
+          });
 
+          isOpen = false;
+        } else {
+          sidebar.style.width = '240px';
+          body.style.paddingLeft = '240px';
+          toggleBtn.style.left = '220px';
+          toggleIcon.style.transform = 'rotate(180deg)';
+
+          document.querySelectorAll('.item-name, .section-title').forEach(el => {
+            el.style.opacity = '1';
+            el.style.width = 'auto';
+            el.style.visibility = 'visible';
+          });
+
+          isOpen = true;
+        }
+      }
+    }
+
+    toggleBtn.addEventListener('click', toggleSidebar);
+
+    // Fecha sidebar ao clicar fora (apenas mobile)
+    window.addEventListener('click', (e) => {
+      if (window.innerWidth <= 800 && 
+          !sidebar.contains(e.target) && 
+          !toggleBtn.contains(e.target) &&
+          sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+      }
+    });
+
+    // Back to top button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>

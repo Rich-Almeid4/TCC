@@ -29,68 +29,46 @@ while ($fav = mysqli_fetch_assoc($query_favoritos)) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo de Espécies - Arthropoda</title>
   <link rel="stylesheet" href="../css/especie.css">
-  <link rel="stylesheet" href="../../css/theme.css">
+  <link rel="stylesheet" href="../../css/config.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
   <?php include("mensagem.php"); ?>
   
-  <nav class="sidebar">
-    <div class="sidebar-content">
-      <div class="sidebar-header">
-        <div class="logo-circle">
-          <i class="fa-solid fa-bug" style="font-size: 1.5rem; color: #7658d6;"></i>
+  <nav class="sidebar" id="sidebar">
+      <div class="sidebar-content">
+        <div class="user">
+          <img class="logo" src="assets/logo.svg" alt="Logo Arthropoda">
+          <h1 class="name"><span class="item-name" id="title">Arthropoda</span></h1>
         </div>
-        <h1 class="sidebar-title">Arthropoda</h1>
-      </div>
-
-      <div class="menu-section">
-        <h2 class="section-header">PESSOAL</h2>
         <ul class="side-items">
-          <li class="side-item">
-            <a href="index.php"><i class="fa-solid fa-user"></i><span>Perfil</span></a>
-          </li>
-          <li class="side-item">
-            <a href="favoritos.php"><i class="fa-solid fa-star"></i><span>Favoritos</span></a>
-          </li>
-          <li class="side-item">
-            <a href="#"><i class="fa-solid fa-clock-rotate-left"></i><span>Histórico</span></a>
-          </li>
-          <li class="side-item">
-            <a href="#"><i class="fa-solid fa-bell"></i><span>Notificações</span></a>
-          </li>
-          <li class="side-item">
-            <a href="edit.php"><i class="fa-solid fa-gear"></i><span>Configurações</span></a>
-          </li>
+          <li class="side-item"><a href="homepage.html"><i class="fa-solid fa-house"></i><span class="item-name">Home</span></a></li>
+          <li class="section-title">Pessoal</li>
+          <li class="side-item"><a href="edit.php"><i class="fa-solid fa-user"></i><span class="item-name">Perfil</span></a></li>
+          <li class="side-item"><a href="favoritos.php"><i class="fa-solid fa-star"></i><span class="item-name">Favoritos</span></a></li>
+          <li class="side-item"><a href="#"><i class="fa-solid fa-clock-rotate-left"></i><span class="item-name">Histórico</span></a></li>
+        
+          <li class="section-title">Explore</li>
+          <li class="side-item"><a href="#"><i class="fa-solid fa-compass"></i><span class="item-name">Descobrir espécie</span></a></li>
+          <li class="side-item"><a href="catalogo.html"><i class="fa-solid fa-book"></i><span class="item-name">Espécies</span></a></li>
+          <li class="side-item"><a href="artigos.html"><i class="fa-solid fa-flask"></i><span class="item-name">Artigos científicos</span></a></li>
         </ul>
+        
       </div>
+    </nav>
 
-      <div class="menu-section">
-        <h2 class="section-header">EXPLORE</h2>
-        <ul class="side-items">
-          <li class="side-item">
-            <a href="#"><i class="fa-solid fa-compass"></i><span>Descobrir espécie</span></a>
-          </li>
-          <li class="side-item active">
-            <a href="especie.php"><i class="fa-solid fa-book"></i><span>Espécies</span></a>
-          </li>
-          <li class="side-item">
-            <a href="#"><i class="fa-solid fa-flask"></i><span>Artigos científicos</span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <!-- Botão toggle unificado para desktop e mobile -->
+  <button class="toggle-btn" id="toggle-btn">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
 
   <main>
     <div class="top-bar">
-      <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+      <!-- Removido o menu-toggle separado -->
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Pesquisar borboletas..." onkeyup="filtrarEspecies()">
       </div>
-      <button class="profile-btn" onclick="window.location.href='index.php'">
-        <i class="fa-solid fa-circle-user"></i>
-      </button>
+      <!-- Removido o botão de perfil -->
     </div>
 
     <div class="cards-container" id="cards-container">
@@ -129,7 +107,7 @@ while ($fav = mysqli_fetch_assoc($query_favoritos)) {
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <script src="../js/theme-manager.js"></script>
+  <script src="../js/config.js"></script>
   <script>
     function filtrarEspecies() {
       const input = document.getElementById('search-input');
@@ -173,6 +151,61 @@ while ($fav = mysqli_fetch_assoc($query_favoritos)) {
       });
     }
 
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggle-btn');
+    const toggleIcon = toggleBtn.querySelector('i');
+    const body = document.body;
+
+    let isOpen = true;
+
+    function toggleSidebar() {
+      if (window.innerWidth <= 800) {
+        // Comportamento mobile: abre/fecha completamente
+        sidebar.classList.toggle('open');
+      } else {
+        // Comportamento desktop: minimiza/expande
+        if (isOpen) {
+          sidebar.style.width = '55px';
+          body.style.paddingLeft = '55px';
+          toggleBtn.style.left = '40px';
+          toggleIcon.style.transform = 'rotate(0deg)';
+
+          document.querySelectorAll('.item-name, .section-title').forEach(el => {
+            el.style.opacity = '0';
+            el.style.width = '0';
+            el.style.visibility = 'hidden';
+          });
+
+          isOpen = false;
+        } else {
+          sidebar.style.width = '240px';
+          body.style.paddingLeft = '240px';
+          toggleBtn.style.left = '220px';
+          toggleIcon.style.transform = 'rotate(180deg)';
+
+          document.querySelectorAll('.item-name, .section-title').forEach(el => {
+            el.style.opacity = '1';
+            el.style.width = 'auto';
+            el.style.visibility = 'visible';
+          });
+
+          isOpen = true;
+        }
+      }
+    }
+
+    toggleBtn.addEventListener('click', toggleSidebar);
+
+    // Fecha sidebar ao clicar fora (apenas mobile)
+    window.addEventListener('click', (e) => {
+      if (window.innerWidth <= 800 && 
+          !sidebar.contains(e.target) && 
+          !toggleBtn.contains(e.target) &&
+          sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+      }
+    });
+
     // Back to top button
     const backToTop = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
@@ -180,19 +213,6 @@ while ($fav = mysqli_fetch_assoc($query_favoritos)) {
     });
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Menu toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
-
-    window.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-        sidebar.classList.remove('open');
-      }
     });
   </script>
 </body>

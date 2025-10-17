@@ -36,18 +36,18 @@ $usuario = mysqli_fetch_array($query);
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Perfil do Usuário</title>
 <link rel="stylesheet" href="../../css/perfil.css"/>
-<link rel="stylesheet" href="../../css/theme.css"/>
+<link rel="stylesheet" href="../../css/config.css"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="icon" href="logo.svg" type="image/png">
-<script src="../js/theme-manager.js"></script>
+<script src="../js/config.js"></script>
 </head>
 <body>
 
 <header>
  <img class="logo" src="logo.svg" alt="Logo Arthropoda">
-  <button class="btn-home" onclick="window.location.href='catalogo.html'">Tela principal</button>
+  <button class="btn-home" onclick="window.location.href='especie.php'">Tela principal</button>
 
 </header>
 
@@ -310,16 +310,17 @@ $usuario = mysqli_fetch_array($query);
             const fontSizeSelect = document.getElementById('font-size');
             const selectedFontSize = fontSizeSelect.value;
             
-            // Salva o tema 
+            // Salva o tema usando o ThemeManager
             window.ThemeManager.save(selectedTheme);
             
             // Salva o tamanho de fonte usando o FontSizeManager
             window.FontSizeManager.save(selectedFontSize);
             
-            // Mostra notificação 
+            // Mostra notificação elegante
             showNotification('Configurações salvas com sucesso!');
             
-            // adicionar código para salvar outras configurações
+            // Aqui você pode adicionar código para salvar outras configurações
+            // como idioma, notificações, etc.
         }
 
         function showNotification(message) {
