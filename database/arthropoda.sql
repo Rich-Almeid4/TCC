@@ -36,14 +36,15 @@ CREATE TABLE galeria_imagens (
     data_upload DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_especie) REFERENCES especie(id)
 );
-CREATE TABLE artigo (
+CREATE TABLE artigo(
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(200) NOT NULL,
+    conteudo TEXT,
     autor VARCHAR(100),
-    caminho_arquivo VARCHAR(255), -- Caminho do PDF ou outro
+    caminho_arquivo VARCHAR(255),
+    capa VARCHAR(255),
     data_publicacao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
 
 CREATE TABLE favorito(
     id INT PRIMARY KEY AUTO_INCREMENT,
