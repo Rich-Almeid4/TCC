@@ -56,7 +56,7 @@ if (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin') {
 <a href="<?= $link_voltar ?>" class="btn btn-secondary mb-4">&larr; Voltar</a>
 
 
-<h2>Meus Favoritos</h2>
+<h2>Espécies Favoritas</h2>
 
 <?php if (mysqli_num_rows($query) > 0): ?>
 <table class="table table-striped">

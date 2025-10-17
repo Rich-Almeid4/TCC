@@ -79,14 +79,18 @@ if (isset($_GET['id'])) {
     $sql = "SELECT * FROM artigo ORDER BY data_publicacao DESC";
     $result = mysqli_query($conn, $sql);
 
-    while ($artigo = mysqli_fetch_assoc($result)) {
-        echo "<div class='artigo'>";
-        echo "<h2><a href='artigos.php?id=" . $artigo['id'] . "'>" . htmlspecialchars($artigo['titulo']) . "</a></h2>";
-        echo "<p><strong>Autor:</strong> " . htmlspecialchars($artigo['autor']) . "</p>";
-        echo "<p><strong>Data:</strong> " . date('d/m/Y H:i', strtotime($artigo['data_publicacao'])) . "</p>";
-        echo "<p><a href='artigos.php?id=" . $artigo['id'] . "'>Visualizar documento</a></p>";
-        echo "</div>";
+   while ($artigo = mysqli_fetch_assoc($result)) {
+    echo "<div class='artigo'>";
+    if (!empty($artigo['capa'])) {
+        echo "<img src='" . htmlspecialchars($artigo['capa']) . "' alt='Capa do artigo' style='width:100%; max-width:400px; border-radius:10px; margin-bottom:10px;'>";
     }
+    echo "<h2><a href='artigos.php?id=" . $artigo['id'] . "'>" . htmlspecialchars($artigo['titulo']) . "</a></h2>";
+    echo "<p><strong>Autor:</strong> " . htmlspecialchars($artigo['autor']) . "</p>";
+    echo "<p><strong>Data:</strong> " . date('d/m/Y H:i', strtotime($artigo['data_publicacao'])) . "</p>";
+    echo "<p><a href='artigos.php?id=" . $artigo['id'] . "'>Visualizar documento</a></p>";
+    echo "</div>";
+}
+
 }
 ?>
 
