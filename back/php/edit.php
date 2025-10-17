@@ -36,18 +36,18 @@ $usuario = mysqli_fetch_array($query);
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Perfil do Usuário</title>
 <link rel="stylesheet" href="../../css/perfil.css"/>
-<link rel="stylesheet" href="../../css/config.css"/>
+<link rel="stylesheet" href="../../css/theme.css"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="icon" href="logo.svg" type="image/png">
-<script src="../js/config.js"></script>
+<script src="../js/theme-manager.js"></script>
 </head>
 <body>
 
 <header>
  <img class="logo" src="logo.svg" alt="Logo Arthropoda">
-  <button class="btn-home" onclick="window.location.href='../../front/catalogo.html'">Tela principal</button>
+  <button class="btn-home" onclick="window.location.href='catalogo.html'">Tela principal</button>
 
 </header>
 
@@ -310,17 +310,16 @@ $usuario = mysqli_fetch_array($query);
             const fontSizeSelect = document.getElementById('font-size');
             const selectedFontSize = fontSizeSelect.value;
             
-            // Salva o tema usando o ThemeManager
+            // Salva o tema 
             window.ThemeManager.save(selectedTheme);
             
             // Salva o tamanho de fonte usando o FontSizeManager
             window.FontSizeManager.save(selectedFontSize);
             
-            // Mostra notificação elegante
+            // Mostra notificação 
             showNotification('Configurações salvas com sucesso!');
             
-            // Aqui você pode adicionar código para salvar outras configurações
-            // como idioma, notificações, etc.
+            // adicionar código para salvar outras configurações
         }
 
         function showNotification(message) {
