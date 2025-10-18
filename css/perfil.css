@@ -98,13 +98,14 @@ main {
   opacity: 0.85;
 }
 
+/* Alterado fundo de rgba(255 255 255 / 0.15) para branco e ajustadas cores de texto */
 .perfil-editar {
   flex: 1;
-  background: rgba(255 255 255 / 0.15);
+  background: white;
   border-radius: 20px;
   padding: 30px 40px;
   box-shadow: 0 0 30px rgba(255 255 255 / 0.3);
-  color: #fff;
+  color: #333;
   max-width: 600px;
 }
 
@@ -114,6 +115,7 @@ main {
   font-size: 1.8rem;
   border-bottom: 2px solid #6a3ce2;
   padding-bottom: 6px;
+  color: #6a3ce2;
 }
 
 form {
@@ -126,6 +128,7 @@ label {
   font-weight: 600;
   margin-bottom: 6px;
   display: block;
+  color: #555;
 }
 
 input[type="text"],
@@ -134,20 +137,21 @@ input[type="password"],
 input[type="file"] {
   width: 100%;
   padding: 10px 15px;
-  border: none;
+  border: 2px solid #e0d4f7;
   border-radius: 10px;
   font-size: 1rem;
-  background: rgba(255 255 255 / 0.3);
-  color: #241f1f80;
+  background: #f9f7ff;
+  color: #333;
   outline: none;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="file"]:focus {
-  background: #ffffff80;
+  border-color: #7658d6;
+  background: #fff;
 }
 
 .botoes {
@@ -186,11 +190,12 @@ input[type="file"]:focus {
   background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/600px-Profile_avatar_placeholder_large.png")
     no-repeat center;
   background-size: cover;
-  box-shadow: 0 0 10px rgba(255 255 255 / 0.6);
+  box-shadow: 0 0 10px rgba(118, 88, 214, 0.3);
 }
 
+/* Alterado fundo de rgba(255 255 255 / 0.15) para branco e ajustadas cores de texto */
 .configuracoes-section {
-  background-color: rgba(255 255 255 / 0.15);
+  background-color: white;
   border-radius: 25px;
   padding: 35px;
   width: 100%;
@@ -204,6 +209,7 @@ input[type="file"]:focus {
   font-size: 1.8rem;
   border-bottom: 2px solid #6a3ce2;
   padding-bottom: 6px;
+  color: #6a3ce2;
 }
 
 .settings-tabs {
@@ -215,9 +221,9 @@ input[type="file"]:focus {
 .tab-btn {
   flex: 1;
   padding: 10px 16px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #f0ebf8;
   border: 2px solid transparent;
-  color: #333;
+  color: #555;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
@@ -226,12 +232,12 @@ input[type="file"]:focus {
 }
 
 .tab-btn:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #e5dcf5;
 }
 
 .tab-btn.active {
-  background-color: white;
-  color: #7658d6;
+  background-color: #7658d6;
+  color: white;
   font-weight: 600;
   border-color: #7658d6;
 }
@@ -266,14 +272,16 @@ input[type="file"]:focus {
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: #f9f7ff;
   border-radius: 10px;
   transition: all 0.3s ease;
+  border: 1px solid #e8e0f7;
 }
 
 .setting-item:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #f0ebf8;
   transform: translateX(3px);
+  border-color: #d4c5f0;
 }
 
 .setting-item > label:first-child {
@@ -361,6 +369,43 @@ input[type="file"]:focus {
 
 .btn-save-settings {
   margin-top: 10px;
+}
+
+/* Notificação de salvamento */
+.theme-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #7658d6;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(118, 88, 214, 0.4);
+  animation: slideIn 0.3s ease;
+  z-index: 1000;
+  font-weight: 500;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 800px) {
