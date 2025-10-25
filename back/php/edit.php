@@ -198,14 +198,6 @@ $usuario = mysqli_fetch_array($query);
         </div>
 
         <div class="setting-item">
-          <label>Reduzir animações</label>
-          <label class="custom-checkbox">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-
-        <div class="setting-item">
           <label for="color-blind-mode">Modo para daltonismo</label>
           <select id="color-blind-mode" name="color-blind-mode">
             <option value="none" selected>Nenhum</option>
@@ -239,13 +231,6 @@ $usuario = mysqli_fetch_array($query);
           </label>
         </div>
 
-        <div class="setting-item">
-          <label>Descrições detalhadas de imagens</label>
-          <label class="custom-checkbox">
-            <input type="checkbox" checked>
-            <span class="checkmark"></span>
-          </label>
-        </div>
       </div>
 
       <button class="btn-update btn-save-settings" onclick="window.SettingsManager.saveSettings()">Salvar Configurações</button>

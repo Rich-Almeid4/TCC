@@ -15,7 +15,7 @@ if (isset($_POST['criar'])) {
 
     if (empty($nome) || empty($email) || empty($senha)) {
         $_SESSION['mensagem'] = 'Preencha todos os campos!';
-        header('Location: cadastro.php');
+        header('Location: login.php');
         exit;
     }
 
@@ -30,7 +30,7 @@ if (isset($_POST['criar'])) {
         exit;
     } else {
         $_SESSION['mensagem'] = 'Erro ao cadastrar!';
-        header('Location: cadastro.php');
+        header('Location: login.php');
         exit;
     }
 }

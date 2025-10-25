@@ -31,6 +31,9 @@ while ($fav = mysqli_fetch_assoc($query_favoritos)) {
   <link rel="stylesheet" href="../css/especie.css">
   <link rel="stylesheet" href="../../css/config.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    
+  </style>
 </head>
 <body>
   <?php include("mensagem.php"); ?>
@@ -57,18 +60,16 @@ while ($fav = mysqli_fetch_assoc($query_favoritos)) {
       </div>
     </nav>
 
-  <!-- Botão toggle unificado para desktop e mobile -->
+  
   <button class="toggle-btn" id="toggle-btn">
     <i class="fa-solid fa-chevron-left"></i>
   </button>
 
   <main>
     <div class="top-bar">
-      <!-- Removido o menu-toggle separado -->
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Pesquisar borboletas..." onkeyup="filtrarEspecies()">
       </div>
-      <!-- Removido o botão de perfil -->
     </div>
 
     <div class="cards-container" id="cards-container">
