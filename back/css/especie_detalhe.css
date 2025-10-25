@@ -207,36 +207,39 @@ body {
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.2rem;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
 .info-item {
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border-radius: 12px;
-  padding: 1.2rem;
+  padding: 1rem 1.2rem;
   border-left: 4px solid #7658d6;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .info-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 15px rgba(118, 88, 214, 0.12);
 }
 
 .info-item .label {
-  font-size: 0.85rem;
-  color: #666;
+  font-size: 0.7rem;
+  color: #7658d6;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.3rem;
-  font-weight: 500;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  display: block;
 }
 
 .info-item .value {
-  font-size: 1.05rem;
-  color: #333;
-  font-weight: 600;
+  font-size: 1rem;
+  color: #2c3e50;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .conservation-badge {
@@ -325,36 +328,44 @@ body {
 
 .curiosity-grid {
   display: grid;
-  gap: 1.2rem;
+  gap: 1rem;
   margin-top: 1.5rem;
 }
 
 .curiosity-item {
-  background: linear-gradient(135deg, #e8ecf1 0%, #f5f7fa 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border-radius: 12px;
-  padding: 1.3rem;
+  padding: 1rem 1.2rem;
   display: flex;
   gap: 1rem;
   align-items: flex-start;
   transition: all 0.3s ease;
   border-left: 4px solid #7658d6;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .curiosity-item:hover {
-  transform: translateX(8px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(118, 88, 214, 0.1);
 }
 
 .curiosity-item .icon {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #7658d6;
   flex-shrink: 0;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .curiosity-item p {
-  color: #444;
-  font-size: 1rem;
-  line-height: 1.6;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
 }
 
 .quiz-container {
@@ -372,7 +383,6 @@ body {
   text-align: center;
 }
 
-/* Melhorando estilos dos botões do quiz com reset completo */
 .quiz-options {
   display: grid;
   gap: 1rem;
@@ -380,37 +390,25 @@ body {
 }
 
 .quiz-option {
-  /* Reset de estilos nativos */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-
-  /* Layout */
   display: block;
   width: 100%;
 
-  /* Espaçamento */
   padding: 1.5rem 1.8rem;
   margin: 0;
-
-  /* Visual */
   background: #f8f9fa;
   border: 2px solid #dee2e6;
   border-radius: 12px;
-
-  /* Tipografia */
   font-family: "Poppins", sans-serif;
   font-size: 1.05rem;
   font-weight: 500;
   color: #333;
   text-align: left;
   line-height: 1.5;
-
-  /* Interação */
   cursor: pointer;
   transition: all 0.3s ease;
-
-  /* Sombra sutil */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -497,27 +495,18 @@ body {
 }
 
 .restart-btn {
-  /* Reset de estilos nativos */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-
-  /* Visual */
   background: white;
   color: #7658d6;
   border: none;
   border-radius: 12px;
-
-  /* Espaçamento */
   padding: 1rem 2.5rem;
   margin-top: 1.5rem;
-
-  /* Tipografia */
   font-family: "Poppins", sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
-
-  /* Interação */
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
