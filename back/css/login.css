@@ -43,7 +43,7 @@ button {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #fcebe1;
+  background: #d1c1fdff;
   overflow: hidden;
 }
 
@@ -79,7 +79,7 @@ button {
   transform: translate(-50%, -50%);
   left: 75%;
   width: 50%;
-  transition: 1s 0.7s ease-in-out;
+  transition: all 1.3s cubic-bezier(0.55, 0.05, 0.25, 0.95); /* tempo igual ao painel */
   display: grid;
   grid-template-columns: 1fr;
   z-index: 5;
@@ -161,6 +161,24 @@ form {
   max-width: 380px;
 }
 
+
+/* movimento dos formulários */
+.sign-in-form,
+.sign-up-form {
+  transition: all 1.2s cubic-bezier(0.55, 0.05, 0.25, 0.95); /* sincroniza tempo */
+}
+
+.left-panel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform-origin: center;
+  transition: transform 1.6s cubic-bezier(0.55, 0.05, 0.25, 0.95);
+}
+
 .file-label {
   display: flex;
   align-items: center;
@@ -201,6 +219,17 @@ form {
 
 .btn-cadastro:hover {
   color: #67d7db;
+}
+
+.image-panel img {
+  width: 85%;              /* Diminui um pouco o tamanho da imagem */
+  max-width: 500px;
+  transition: transform 0.8s ease; /* Transição suave */
+}
+
+/* Quando estiver na tela de cadastro, espelha a imagem */
+.container.cadastro .image-panel img {
+  transform: scaleX(-1);  /* Espelha horizontalmente */
 }
 
 /* ========== BOTÃO ========== */
@@ -245,130 +274,21 @@ form {
 
 .left-panel {
   pointer-events: all;
-  background: linear-gradient(145deg, #ccbcfa 30%, #9485c0 60%, #7658d6 95%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 0 0 80% 0;
-  transition: 1.8s 0.6s ease-in-out;
+  transition: transform 1.2s ease-in-out, border-radius 1.2s ease-in-out;
   position: relative;
   overflow: hidden;
 }
 
-/* Efeito de blur circular com gradiente azul e roxo */
-.left-panel::before {
-  content: "";
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle at center,
-    rgba(80, 100, 255, 0.7) 0%,
-    rgba(120, 90, 255, 0.6) 20%,
-    rgba(140, 110, 255, 0.4) 40%,
-    rgba(160, 130, 240, 0.25) 60%,
-    rgba(180, 150, 220, 0.1) 75%,
-    transparent 90%
-  );
-  filter: blur(60px);
-  z-index: 1;
-  transition: all 1.8s ease-in-out;
-}
-
-/* ========== IMAGENS ========== */
-.image {
-  position: absolute;
-  transition: all 1.8s ease-in-out;
-  transition-delay: 0.4s;
-}
-
-/* Borboleta com posicionamento left/right para espelhamento perfeito */
-.flower {
-  width: 100%;
-  max-width: 1800px;
-  bottom: 0;
-  left: -20%;
-  position: absolute;
-  transform: scaleX(1);
-  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
-  z-index: 3;
-  transition: all 1.8s ease-in-out 0.6s;
-}
-
-/* Galho com blur sutil integrado ao fundo */
-.vine {
-  width: 100%;
-  max-width: 480px;
-  top: 0;
-  right: 0;
-  position: absolute;
-  transform: scaleX(1);
-  filter: blur(2px) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
-  opacity: 0.9;
-  z-index: 2;
-  transition: all 1.8s ease-in-out 0.6s;
-}
-
-/* Novo galho fino posicionado no meio-esquerda */
-.vine-thin {
-  width: 100%;
-  max-width: 400px;
-  top: 30%;
-  left: -5%;
-  position: absolute;
-  transform: scaleX(1) rotate(-10deg);
-  filter: blur(2px) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
-  opacity: 0.85;
-  z-index: 2;
-  transition: all 1.8s ease-in-out 0.6s;
-}
-
-/* Novo galho grosso posicionado no canto inferior direito */
-.vine-thick {
-  width: 100%;
-  max-width: 550px;
-  bottom: 15%;
-  right: -8%;
-  position: absolute;
-  transform: scaleX(1) rotate(15deg);
-  filter: blur(2px) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
-  opacity: 0.9;
-  z-index: 2;
-  transition: all 1.8s ease-in-out 0.6s;
-}
-
-/* ========== MODO CADASTRO ========== */
 .container.sign-up-mode .left-panel {
   border-radius: 0 0 0 80%;
   transform: translateX(100%);
 }
-
-/* Espelhamento perfeito da borboleta usando right em vez de left */
-.container.sign-up-mode .flower {
-  left: auto;
-  right: -20%;
-  transform: scaleX(-1);
-}
-
-/* Espelhamento perfeito do galho usando left em vez de right */
-.container.sign-up-mode .vine {
-  right: auto;
-  left: 0;
-  transform: scaleX(-1);
-}
-
-/* Espelhamento do galho fino */
-.container.sign-up-mode .vine-thin {
-  left: auto;
-  right: -5%;
-  transform: scaleX(-1) rotate(10deg);
-}
-
-/* Espelhamento do galho grosso */
-.container.sign-up-mode .vine-thick {
-  right: auto;
-  left: -8%;
-  transform: scaleX(-1) rotate(-15deg);
+.container.sign-up-mode .left-panel img {
+  transform: scale(1.02) rotateY(180deg);
 }
 
 .container.sign-up-mode .signin-signup {
@@ -379,6 +299,8 @@ form {
   opacity: 1;
   z-index: 2;
 }
+
+
 
 .container.sign-up-mode form.sign-in-form {
   opacity: 0;
@@ -437,55 +359,11 @@ form {
     top: 5%;
     transform: translate(-50%, 0);
   }
-
-  /* Ajustes responsivos mantendo espelhamento perfeito */
-  .flower {
-    max-width: 900px;
-  }
-
-  .container.sign-up-mode .flower {
-    left: auto;
-    right: -20%;
-  }
-
-  .vine {
-    max-width: 300px;
-  }
-
-  .container.sign-up-mode .vine {
-    right: auto;
-    left: 0;
-  }
-
-  /* Ajustes responsivos para os novos galhos */
-  .vine-thin {
-    max-width: 250px;
-    top: 25%;
-  }
-
-  .container.sign-up-mode .vine-thin {
-    left: auto;
-    right: -5%;
-  }
-
-  .vine-thick {
-    max-width: 350px;
-    bottom: 20%;
-  }
-
-  .container.sign-up-mode .vine-thick {
-    right: auto;
-    left: -8%;
-  }
 }
 
 @media (max-width: 570px) {
   form {
     padding: 0 1.5rem;
-  }
-
-  .image {
-    display: none;
   }
 
   .panel {

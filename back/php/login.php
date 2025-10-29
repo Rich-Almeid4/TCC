@@ -7,8 +7,8 @@ session_start();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login e Cadastro - Arthropoda</title>
-  <link rel="stylesheet" href="../css/login.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
@@ -84,35 +84,42 @@ session_start();
     <!-- Painel de imagens movido para fora do forms-container para ficar por cima -->
     <div class="panels-container">
       <div class="panel left-panel">
-        <img src="img/borboleta prototip.png" alt="Flores" class="image flower">
-        <img src="img/trepadeira.png" alt="Trepadeira" class="image vine">
-        <!-- Adicionando novos galhos para preencher o fundo -->
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/GALHO-LZoAnqx1JhFP7dguwFJil7XXoLE3ml.png" alt="Galho fino" class="image vine-thin">
-        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/galhao-5wC6QcGYGtKTvVRNTSmS0YrDAX4pHY.png" alt="Galho grosso" class="image vine-thick">
+        <img src="img/img-painel.jpg" alt="">
       </div>
     </div>
   </div>
 
-  <script>
-    // Toggle between login and signup forms
-    document.querySelector("#sign-up-btn").addEventListener("click", (e) => {
-      e.preventDefault();
-      document.querySelector(".container").classList.add("sign-up-mode");
-    });
-    
-    document.querySelector("#sign-in-btn").addEventListener("click", (e) => {
-      e.preventDefault();
-      document.querySelector(".container").classList.remove("sign-up-mode");
-    });
+ <script>
+  // Alternar entre login e cadastro
+  const container = document.querySelector(".container");
+  const signUpBtn = document.querySelector("#sign-up-btn");
+  const signInBtn = document.querySelector("#sign-in-btn");
+  const panelImage = document.querySelector(".left-panel img");
 
-    // Auto-hide alert messages after 5 seconds
-    const alertMessage = document.querySelector('.alert-message');
-    if (alertMessage) {
-      setTimeout(() => {
-        alertMessage.style.opacity = '0';
-        setTimeout(() => alertMessage.remove(), 300);
-      }, 5000);
-    }
-  </script>
+  // Ao clicar em "Cadastrar-se"
+  signUpBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    container.classList.add("sign-up-mode");
+    // Espelhar a imagem da borboleta
+    panelImage.style.transform = "rotateY(180deg)";
+  });
+
+  // Ao clicar em "Entrar"
+  signInBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    container.classList.remove("sign-up-mode");
+    // Retornar a imagem ao normal
+    panelImage.style.transform = "rotateY(0deg)";
+  });
+
+  // Esconder alerta automaticamente
+  const alertMessage = document.querySelector(".alert-message");
+  if (alertMessage) {
+    setTimeout(() => {
+      alertMessage.style.opacity = "0";
+      setTimeout(() => alertMessage.remove(), 300);
+    }, 5000);
+  }
+</script>
 </body>
 </html>
