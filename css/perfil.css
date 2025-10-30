@@ -1,3 +1,6 @@
+/*css perfil e configs*/
+
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 a {
@@ -26,51 +29,51 @@ html {
 .bubble {
   position: fixed;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
-  backdrop-filter: blur(2px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(186, 169, 245, 0.3);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(3px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.3), 0 0 50px rgba(186, 169, 245, 0.5);
   pointer-events: none;
   z-index: 1;
 }
 
 .bubble-1 {
-  width: 300px;
-  height: 300px;
-  top: 10%;
-  left: 5%;
+  width: 400px;
+  height: 400px;
+  top: 5%;
+  left: 3%;
   animation: float 20s ease-in-out infinite;
 }
 
 .bubble-2 {
-  width: 200px;
-  height: 200px;
-  top: 60%;
-  right: 10%;
+  width: 300px;
+  height: 300px;
+  top: 55%;
+  right: 8%;
   animation: float 15s ease-in-out infinite 2s;
 }
 
 .bubble-3 {
-  width: 150px;
-  height: 150px;
-  bottom: 15%;
-  left: 15%;
+  width: 250px;
+  height: 250px;
+  bottom: 10%;
+  left: 12%;
   animation: float 18s ease-in-out infinite 4s;
 }
 
 .bubble-4 {
-  width: 250px;
-  height: 250px;
-  top: 40%;
-  right: 5%;
+  width: 350px;
+  height: 350px;
+  top: 35%;
+  right: 3%;
   animation: float 22s ease-in-out infinite 1s;
 }
 
 .bubble-5 {
-  width: 180px;
-  height: 180px;
-  bottom: 25%;
-  right: 25%;
+  width: 280px;
+  height: 280px;
+  bottom: 20%;
+  right: 22%;
   animation: float 16s ease-in-out infinite 3s;
 }
 
@@ -92,14 +95,15 @@ html {
 
 /* Added glass morphism and glow effects to header */
 header {
-  background: rgba(90, 70, 150, 0.4);
-  backdrop-filter: blur(10px);
+  background: rgba(90, 70, 150, 0.5);
+  backdrop-filter: blur(15px);
   padding: 15px 30px;
   display: flex;
   align-items: center;
   gap: 15px;
-  box-shadow: 0 4px 20px rgba(211, 193, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(211, 193, 255, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.3), 0 0 50px
+    rgba(186, 169, 245, 0.3);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   position: relative;
   z-index: 10;
 }
@@ -112,7 +116,8 @@ header .logo {
     url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Monarch_Butterfly_Danaus_plexippus_Male_Mating_2.jpg/1200px-Monarch_Butterfly_Danaus_plexippus_Male_Mating_2.jpg")
     no-repeat center;
   background-size: cover;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 /* Added glossy button effects with shine animation */
@@ -144,15 +149,17 @@ header button:hover::before {
 
 header .btn-home {
   background: linear-gradient(135deg, #a990e7 0%, #8b6fd9 100%);
-  box-shadow: 0 4px 15px rgba(147, 160, 247, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(147, 160, 247, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 0 30px
+    rgba(169, 144, 231, 0.4);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 header .btn-home:hover {
   background: linear-gradient(135deg, #8b6fd9 0%, #7658d6 100%);
-  box-shadow: 0 6px 25px rgba(125, 106, 236, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(125, 106, 236, 0.7), inset 0 2px 0 rgba(255, 255, 255, 0.5), 0 0 50px
+    rgba(139, 111, 217, 0.6);
+  transform: translateY(-3px) scale(1.05);
 }
 
 main {
@@ -169,21 +176,21 @@ main {
 /* Added glass morphism and glow effects to profile info card */
 .perfil-info {
   width: 300px;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
   border-radius: 20px;
   padding: 30px;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 40px
-    rgba(211, 193, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 0 60px
+    rgba(211, 193, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
 }
 
 .perfil-info:hover {
-  box-shadow: 0 12px 40px rgba(186, 169, 245, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 50px
-    rgba(211, 193, 255, 0.3);
-  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(186, 169, 245, 0.6), inset 0 2px 0 rgba(255, 255, 255, 0.5), 0 0 80px
+    rgba(211, 193, 255, 0.5);
+  transform: translateY(-8px) scale(1.02);
 }
 
 .perfil-info .foto-perfil {
@@ -193,9 +200,10 @@ main {
   border-radius: 50%;
   background-image: url("icone-de-avatar-cinza.png");
   background-size: cover;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.2), 0 0 60px
+    rgba(186, 169, 245, 0.4);
   object-fit: cover;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .perfil-info h2 {
@@ -213,13 +221,13 @@ main {
 /* Added glass morphism to edit profile section */
 .perfil-editar {
   flex: 1;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(15px);
   border-radius: 20px;
   padding: 30px 40px;
-  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 40px
-    rgba(211, 193, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.6), 0 0 60px
+    rgba(211, 193, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   color: #333;
   max-width: 600px;
 }
@@ -270,8 +278,8 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="file"]:focus {
   border-color: #7658d6;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 20px rgba(118, 88, 214, 0.3), inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 30px rgba(118, 88, 214, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.05), 0 0 50px rgba(186, 169, 245, 0.3);
 }
 
 .botoes {
@@ -283,39 +291,25 @@ input[type="file"]:focus {
 /* Added glossy button with shine effect */
 .btn-update {
   background: linear-gradient(135deg, #7658d6 0%, #6a3ce2 100%);
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 12px 30px;
   border-radius: 25px;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(125, 106, 236, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(125, 106, 236, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 0 35px
+    rgba(118, 88, 214, 0.4);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn-update::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn-update:hover::before {
-  left: 100%;
 }
 
 .btn-update:hover {
   background: linear-gradient(135deg, #6a3ce2 0%, #5930cc 100%);
-  box-shadow: 0 6px 30px rgba(125, 106, 236, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(125, 106, 236, 0.7), inset 0 2px 0 rgba(255, 255, 255, 0.5), 0 0 55px
+    rgba(118, 88, 214, 0.6);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .avatar-wrapper {
@@ -338,15 +332,15 @@ input[type="file"]:focus {
 
 /* Added glass morphism to settings section */
 .configuracoes-section {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(15px);
   border-radius: 25px;
   padding: 35px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 40px
-    rgba(211, 193, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.4), inset 0 2px 0 rgba(255, 255, 255, 0.6), 0 0 60px
+    rgba(211, 193, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .configuracoes-section h3 {
@@ -406,8 +400,9 @@ input[type="file"]:focus {
   background: linear-gradient(135deg, #7658d6 0%, #6a3ce2 100%);
   color: white;
   font-weight: 600;
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(118, 88, 214, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(118, 88, 214, 0.5), inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 0 35px
+    rgba(118, 88, 214, 0.4);
 }
 
 .settings-content {
@@ -524,7 +519,8 @@ input[type="file"]:focus {
 .custom-checkbox input:checked ~ .checkmark {
   background: linear-gradient(135deg, #9d79ff 0%, #7658d6 100%);
   border-color: #7658d6;
-  box-shadow: 0 0 15px rgba(118, 88, 214, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(118, 88, 214, 0.7), inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 0 40px
+    rgba(157, 121, 255, 0.5);
 }
 
 .checkmark:after {

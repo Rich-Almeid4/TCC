@@ -1,3 +1,5 @@
+<!-- catálogo -->
+
 <?php
 session_start();
 
