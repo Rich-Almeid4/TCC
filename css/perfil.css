@@ -18,15 +18,90 @@ html {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
 }
 
+/* Added floating bubbles for Frutiger Aero aesthetic */
+.bubble {
+  position: fixed;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(186, 169, 245, 0.3);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bubble-1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 5%;
+  animation: float 20s ease-in-out infinite;
+}
+
+.bubble-2 {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  right: 10%;
+  animation: float 15s ease-in-out infinite 2s;
+}
+
+.bubble-3 {
+  width: 150px;
+  height: 150px;
+  bottom: 15%;
+  left: 15%;
+  animation: float 18s ease-in-out infinite 4s;
+}
+
+.bubble-4 {
+  width: 250px;
+  height: 250px;
+  top: 40%;
+  right: 5%;
+  animation: float 22s ease-in-out infinite 1s;
+}
+
+.bubble-5 {
+  width: 180px;
+  height: 180px;
+  bottom: 25%;
+  right: 25%;
+  animation: float 16s ease-in-out infinite 3s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px);
+  }
+}
+
+/* Added glass morphism and glow effects to header */
 header {
-  background: #5a4696cc;
+  background: rgba(90, 70, 150, 0.4);
+  backdrop-filter: blur(10px);
   padding: 15px 30px;
   display: flex;
   align-items: center;
   gap: 15px;
-  box-shadow: 0 0 10px #d3c1ff;
+  box-shadow: 0 4px 20px rgba(211, 193, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 10;
 }
 
 header .logo {
@@ -37,8 +112,10 @@ header .logo {
     url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Monarch_Butterfly_Danaus_plexippus_Male_Mating_2.jpg/1200px-Monarch_Butterfly_Danaus_plexippus_Male_Mating_2.jpg")
     no-repeat center;
   background-size: cover;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
+/* Added glossy button effects with shine animation */
 header button {
   border: none;
   padding: 8px 18px;
@@ -46,17 +123,36 @@ header button {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+header button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+header button:hover::before {
+  left: 100%;
 }
 
 header .btn-home {
-  background: #a990e7;
-  box-shadow: 0 0 5px #93a0f7;
+  background: linear-gradient(135deg, #a990e7 0%, #8b6fd9 100%);
+  box-shadow: 0 4px 15px rgba(147, 160, 247, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 header .btn-home:hover {
-  background: #5930cc;
-  box-shadow: 0 0 15px #7d6aec;
+  background: linear-gradient(135deg, #8b6fd9 0%, #7658d6 100%);
+  box-shadow: 0 6px 25px rgba(125, 106, 236, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 main {
@@ -66,15 +162,28 @@ main {
   gap: 50px;
   justify-content: center;
   align-items: flex-start;
+  position: relative;
+  z-index: 2;
 }
 
+/* Added glass morphism and glow effects to profile info card */
 .perfil-info {
   width: 300px;
-  background: rgba(255 255 255 / 0.15);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 30px;
   text-align: center;
-  box-shadow: 0 0 30px rgba(255 255 255 / 0.3);
+  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 40px
+    rgba(211, 193, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.perfil-info:hover {
+  box-shadow: 0 12px 40px rgba(186, 169, 245, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 50px
+    rgba(211, 193, 255, 0.3);
+  transform: translateY(-5px);
 }
 
 .perfil-info .foto-perfil {
@@ -84,27 +193,33 @@ main {
   border-radius: 50%;
   background-image: url("icone-de-avatar-cinza.png");
   background-size: cover;
-  box-shadow: 0 0 15px rgba(255 255 255 / 0.6);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1);
   object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
 .perfil-info h2 {
   font-size: 2rem;
   margin-bottom: 6px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .perfil-info p {
   font-size: 1.1rem;
-  opacity: 0.85;
+  opacity: 0.95;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Alterado fundo de rgba(255 255 255 / 0.15) para branco e ajustadas cores de texto */
+/* Added glass morphism to edit profile section */
 .perfil-editar {
   flex: 1;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 30px 40px;
-  box-shadow: 0 0 30px rgba(255 255 255 / 0.3);
+  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 40px
+    rgba(211, 193, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: #333;
   max-width: 600px;
 }
@@ -116,6 +231,7 @@ main {
   border-bottom: 2px solid #6a3ce2;
   padding-bottom: 6px;
   color: #6a3ce2;
+  text-shadow: 0 2px 10px rgba(106, 60, 226, 0.2);
 }
 
 form {
@@ -131,19 +247,22 @@ label {
   color: #555;
 }
 
+/* Added glass effects and glows to inputs */
 input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="file"] {
   width: 100%;
   padding: 10px 15px;
-  border: 2px solid #e0d4f7;
+  border: 2px solid rgba(224, 212, 247, 0.5);
   border-radius: 10px;
   font-size: 1rem;
-  background: #f9f7ff;
+  background: rgba(249, 247, 255, 0.8);
+  backdrop-filter: blur(5px);
   color: #333;
   outline: none;
   transition: all 0.3s ease;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 input[type="text"]:focus,
@@ -151,7 +270,8 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="file"]:focus {
   border-color: #7658d6;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 20px rgba(118, 88, 214, 0.3), inset 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .botoes {
@@ -160,8 +280,9 @@ input[type="file"]:focus {
   justify-content: flex-start;
 }
 
+/* Added glossy button with shine effect */
 .btn-update {
-  background-color: #6a3ce2;
+  background: linear-gradient(135deg, #7658d6 0%, #6a3ce2 100%);
   border: none;
   color: white;
   padding: 12px 30px;
@@ -169,12 +290,32 @@ input[type="file"]:focus {
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 0 15px #7d6aec;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 20px rgba(125, 106, 236, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-update::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-update:hover::before {
+  left: 100%;
 }
 
 .btn-update:hover {
-  background-color: #5930cc;
+  background: linear-gradient(135deg, #6a3ce2 0%, #5930cc 100%);
+  box-shadow: 0 6px 30px rgba(125, 106, 236, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 .avatar-wrapper {
@@ -183,6 +324,7 @@ input[type="file"]:focus {
   gap: 15px;
 }
 
+/* Added glow effect to avatar preview */
 .avatar-preview {
   width: 100px;
   height: 100px;
@@ -190,17 +332,21 @@ input[type="file"]:focus {
   background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/600px-Profile_avatar_placeholder_large.png")
     no-repeat center;
   background-size: cover;
-  box-shadow: 0 0 10px rgba(118, 88, 214, 0.3);
+  box-shadow: 0 0 20px rgba(118, 88, 214, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Alterado fundo de rgba(255 255 255 / 0.15) para branco e ajustadas cores de texto */
+/* Added glass morphism to settings section */
 .configuracoes-section {
-  background-color: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 25px;
   padding: 35px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 0 30px rgba(255 255 255 / 0.3);
+  box-shadow: 0 8px 32px rgba(186, 169, 245, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 40px
+    rgba(211, 193, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .configuracoes-section h3 {
@@ -210,6 +356,7 @@ input[type="file"]:focus {
   border-bottom: 2px solid #6a3ce2;
   padding-bottom: 6px;
   color: #6a3ce2;
+  text-shadow: 0 2px 10px rgba(106, 60, 226, 0.2);
 }
 
 .settings-tabs {
@@ -218,28 +365,49 @@ input[type="file"]:focus {
   margin-bottom: 30px;
 }
 
+/* Added glass effects to tab buttons */
 .tab-btn {
   flex: 1;
   padding: 10px 16px;
-  background-color: #f0ebf8;
-  border: 2px solid transparent;
+  background: rgba(240, 235, 248, 0.6);
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(186, 169, 245, 0.3);
   color: #555;
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.tab-btn:hover::before {
+  left: 100%;
 }
 
 .tab-btn:hover {
-  background-color: #e5dcf5;
+  background: rgba(229, 220, 245, 0.8);
+  box-shadow: 0 4px 15px rgba(186, 169, 245, 0.3);
 }
 
 .tab-btn.active {
-  background-color: #7658d6;
+  background: linear-gradient(135deg, #7658d6 0%, #6a3ce2 100%);
   color: white;
   font-weight: 600;
-  border-color: #7658d6;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(118, 88, 214, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .settings-content {
@@ -265,23 +433,28 @@ input[type="file"]:focus {
   margin-bottom: 5px;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(118, 88, 214, 0.3);
+  text-shadow: 0 2px 10px rgba(118, 88, 214, 0.2);
 }
 
+/* Added glass effects to setting items */
 .setting-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 15px;
-  background-color: #f9f7ff;
+  background: rgba(249, 247, 255, 0.6);
+  backdrop-filter: blur(5px);
   border-radius: 10px;
   transition: all 0.3s ease;
-  border: 1px solid #e8e0f7;
+  border: 1px solid rgba(232, 224, 247, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .setting-item:hover {
-  background-color: #f0ebf8;
+  background: rgba(240, 235, 248, 0.8);
   transform: translateX(3px);
-  border-color: #d4c5f0;
+  border-color: rgba(212, 197, 240, 0.7);
+  box-shadow: 0 4px 15px rgba(186, 169, 245, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .setting-item > label:first-child {
@@ -291,11 +464,13 @@ input[type="file"]:focus {
   flex: 1;
 }
 
+/* Added glass effects to select dropdowns */
 .setting-item select {
   padding: 6px 12px;
-  border: 2px solid #baa9f5;
+  border: 2px solid rgba(186, 169, 245, 0.5);
   border-radius: 8px;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
   color: #333;
   font-size: 0.9rem;
   cursor: pointer;
@@ -306,7 +481,8 @@ input[type="file"]:focus {
 .setting-item select:focus {
   outline: none;
   border-color: #7658d6;
-  box-shadow: 0 0 8px rgba(118, 88, 214, 0.3);
+  box-shadow: 0 0 15px rgba(118, 88, 214, 0.4);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .custom-checkbox {
@@ -325,26 +501,30 @@ input[type="file"]:focus {
   width: 0;
 }
 
+/* Added glass effects to checkbox */
 .checkmark {
   position: absolute;
   top: 0;
   left: 0;
   height: 22px;
   width: 22px;
-  background-color: white;
-  border: 2px solid #baa9f5;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(186, 169, 245, 0.5);
   border-radius: 5px;
   transition: all 0.3s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .custom-checkbox:hover .checkmark {
   border-color: #7658d6;
-  box-shadow: 0 0 8px rgba(118, 88, 214, 0.3);
+  box-shadow: 0 0 15px rgba(118, 88, 214, 0.4);
 }
 
 .custom-checkbox input:checked ~ .checkmark {
-  background-image: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+  background: linear-gradient(135deg, #9d79ff 0%, #7658d6 100%);
   border-color: #7658d6;
+  box-shadow: 0 0 15px rgba(118, 88, 214, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .checkmark:after {
@@ -371,16 +551,18 @@ input[type="file"]:focus {
   margin-top: 10px;
 }
 
-/* Notificação de salvamento */
+/* Added glass effects to notification */
 .theme-notification {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: #7658d6;
+  background: linear-gradient(135deg, #7658d6 0%, #6a3ce2 100%);
+  backdrop-filter: blur(10px);
   color: white;
   padding: 15px 25px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(118, 88, 214, 0.4);
+  box-shadow: 0 8px 30px rgba(118, 88, 214, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   animation: slideIn 0.3s ease;
   z-index: 1000;
   font-weight: 500;

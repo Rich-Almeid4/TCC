@@ -17,11 +17,15 @@ button {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: linear-gradient(-45deg, #9d79ff 0%, #7658d6 70%);
+  /* Reverting to purple gradient with glass effect */
+  background: linear-gradient(135deg, rgba(118, 88, 214, 0.95), rgba(168, 85, 247, 0.95));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 15px 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(118, 88, 214, 0.37), 0 0 20px rgba(168, 85, 247, 0.3), inset 0 1px 0
+    rgba(255, 255, 255, 0.5);
   z-index: 1000;
   animation: slideIn 0.3s ease-out;
   transition: opacity 0.3s ease;
@@ -43,8 +47,33 @@ button {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #d1c1fdff;
+  /* Reverting to original purple gradient background */
+  background: linear-gradient(180deg, #d1c1fd 0%, #e5d9ff 50%, #f0e8ff 100%);
   overflow: hidden;
+}
+
+/* Adding floating bubble decorations for Frutiger Aero feel */
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  /* Purple-tinted bubbles instead of blue */
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(168, 85, 247, 0.2));
+  box-shadow: 0 8px 32px rgba(118, 88, 214, 0.15), inset 0 2px 10px rgba(255, 255, 255, 0.6);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 0.8;
+  }
 }
 
 /* ========== LOGO ========== */
@@ -53,10 +82,15 @@ button {
   top: 30px;
   left: 30px;
   z-index: 1000;
-  background: white;
+  /* Glass morphism effect for logo */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
   padding: 10px 20px;
   border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  /* Purple glow for logo */
+  box-shadow: 0 8px 32px rgba(118, 88, 214, 0.2), 0 0 15px rgba(168, 85, 247, 0.2), inset 0 1px 0
+    rgba(255, 255, 255, 0.8);
 }
 
 .logo img {
@@ -79,7 +113,7 @@ button {
   transform: translate(-50%, -50%);
   left: 75%;
   width: 50%;
-  transition: all 1.3s cubic-bezier(0.55, 0.05, 0.25, 0.95); /* tempo igual ao painel */
+  transition: all 1.3s cubic-bezier(0.55, 0.05, 0.25, 0.95);
   display: grid;
   grid-template-columns: 1fr;
   z-index: 5;
@@ -108,36 +142,53 @@ form {
 
 .title {
   font-size: 2.2rem;
-  color: #444;
+  /* Purple gradient text instead of cyan */
+  background: linear-gradient(135deg, #7658d6, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 /* ========== CAMPOS DE ENTRADA ========== */
 .input-field {
   max-width: 380px;
   width: 100%;
-  background-color: #f0f0f0;
+  /* Glass morphism input fields */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
   margin: 10px 0;
   height: 55px;
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
   padding: 0 0.4rem;
-  border: 2px solid #8359d8;
+  /* Purple border instead of blue */
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 8px 32px rgba(118, 88, 214, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 15px
+    rgba(168, 85, 247, 0.15);
   transition: 0.3s;
 }
 
 .input-field:focus-within {
-  border: 2px solid #67d7db;
-  box-shadow: 0 0 5px rgba(103, 215, 219, 0.5);
+  /* Purple glow on focus */
+  border: 2px solid rgba(168, 85, 247, 0.6);
+  box-shadow: 0 8px 32px rgba(118, 88, 214, 0.2), 0 0 25px rgba(168, 85, 247, 0.4), inset 0 1px 0
+    rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .input-field i {
   text-align: center;
   line-height: 55px;
+  /* Purple icon color */
   color: #7658d6;
   transition: 0.5s;
   font-size: 1.1rem;
+  filter: drop-shadow(0 0 5px rgba(118, 88, 214, 0.3));
 }
 
 .input-field input {
@@ -146,11 +197,13 @@ form {
   border: none;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #333;
+  /* Dark purple text */
+  color: #4c1d95;
 }
 
 .input-field input::placeholder {
-  color: #aaa;
+  /* Light purple placeholder */
+  color: #9333ea;
   font-weight: 500;
 }
 
@@ -161,42 +214,28 @@ form {
   max-width: 380px;
 }
 
-
-/* movimento dos formulários */
-.sign-in-form,
-.sign-up-form {
-  transition: all 1.2s cubic-bezier(0.55, 0.05, 0.25, 0.95); /* sincroniza tempo */
-}
-
-.left-panel img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transform-origin: center;
-  transition: transform 1.6s cubic-bezier(0.55, 0.05, 0.25, 0.95);
-}
-
 .file-label {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   padding: 12px 20px;
-  background: rgba(118, 88, 214, 0.1);
-  border: 2px dashed #8359d8;
+  /* Purple glass effect for file input */
+  background: rgba(168, 85, 247, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px dashed rgba(118, 88, 214, 0.4);
   border-radius: 50px;
   color: #7658d6;
   font-weight: 500;
   cursor: pointer;
+  box-shadow: 0 4px 16px rgba(118, 88, 214, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
 }
 
 .file-label:hover {
-  background: rgba(118, 88, 214, 0.2);
-  border-color: #67d7db;
+  background: rgba(168, 85, 247, 0.25);
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 4px 16px rgba(118, 88, 214, 0.15), 0 0 20px rgba(168, 85, 247, 0.3);
 }
 
 .file-input-wrapper input[type="file"] {
@@ -207,35 +246,41 @@ form {
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
+  /* Dark purple text */
+  color: #4c1d95;
 }
 
 .btn-cadastro {
   font-weight: 600;
+  /* Purple link color */
   color: #7658d6;
   cursor: pointer;
   text-decoration: none;
   transition: 0.3s;
+  text-shadow: 0 0 10px rgba(118, 88, 214, 0.2);
 }
 
 .btn-cadastro:hover {
-  color: #67d7db;
+  color: #a855f7;
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
 }
 
 .image-panel img {
-  width: 85%;              /* Diminui um pouco o tamanho da imagem */
+  width: 85%;
   max-width: 500px;
-  transition: transform 0.8s ease; /* Transição suave */
+  transition: transform 0.8s ease;
 }
 
-/* Quando estiver na tela de cadastro, espelha a imagem */
-.container.cadastro .image-panel img {
-  transform: scaleX(-1);  /* Espelha horizontalmente */
+.container.cadastro .image-panel img,
+.container.sign-up-mode .image-panel img {
+  transform: scaleX(-1);
 }
 
 /* ========== BOTÃO ========== */
 .btn {
   width: 150px;
-  background: linear-gradient(-45deg, #79ffe0 0%, #7658d6 70%);
+  /* Purple to cyan gradient (original design had this) */
+  background: linear-gradient(135deg, #7658d6 0%, #8b5cf6 50%, #22d3ee 100%);
   border: none;
   outline: none;
   height: 49px;
@@ -245,11 +290,33 @@ form {
   font-weight: 600;
   margin: 10px 0;
   cursor: pointer;
+  box-shadow: 0 8px 32px rgba(118, 88, 214, 0.4), 0 0 20px rgba(139, 92, 246, 0.3), inset 0 1px 0
+    rgba(255, 255, 255, 0.5), inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Adding glossy shine effect */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   transition: 0.5s;
 }
 
+.btn:hover::before {
+  left: 100%;
+}
+
 .btn:hover {
-  background: linear-gradient(120deg, #79ffe0 0%, #7658d6 70%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #7658d6 50%, #06b6d4 100%);
+  box-shadow: 0 12px 40px rgba(118, 88, 214, 0.5), 0 0 30px rgba(139, 92, 246, 0.5);
+  transform: translateY(-2px);
 }
 
 /* ========== PAINEL ========== */
@@ -281,12 +348,38 @@ form {
   transition: transform 1.2s ease-in-out, border-radius 1.2s ease-in-out;
   position: relative;
   overflow: hidden;
+  /* Removed box-shadow to fix the shadow bug during animation */
+}
+
+/* Glass overlay on panel */
+.left-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Purple-tinted glass overlay */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(168, 85, 247, 0.03));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.left-panel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform-origin: center;
+  transition: transform 1.6s cubic-bezier(0.55, 0.05, 0.25, 0.95);
+  /* Slight brightness boost for Frutiger Aero feel */
+  filter: brightness(1.1) contrast(1.05) saturate(1.1);
 }
 
 .container.sign-up-mode .left-panel {
   border-radius: 0 0 0 80%;
   transform: translateX(100%);
 }
+
 .container.sign-up-mode .left-panel img {
   transform: scale(1.02) rotateY(180deg);
 }
@@ -299,8 +392,6 @@ form {
   opacity: 1;
   z-index: 2;
 }
-
-
 
 .container.sign-up-mode form.sign-in-form {
   opacity: 0;
@@ -377,5 +468,11 @@ form {
 
   .title {
     font-size: 1.8rem;
+  }
+
+  /* Hide decorative bubbles on mobile */
+  .container::before,
+  .container::after {
+    display: none;
   }
 }

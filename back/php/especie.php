@@ -31,9 +31,6 @@ while ($fav = mysqli_fetch_assoc($query_favoritos)) {
   <link rel="stylesheet" href="../css/especie.css">
   <link rel="stylesheet" href="../../css/config.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <style>
-    
-  </style>
 </head>
 <body>
   <?php include("mensagem.php"); ?>
