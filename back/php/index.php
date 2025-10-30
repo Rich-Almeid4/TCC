@@ -24,7 +24,9 @@ $usuario = mysqli_fetch_assoc($query);
 <head>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  
-  <link rel="stylesheet" href="../../css/config.css"/>
+    <link rel="stylesheet" href="../css/artigo.css">
+    <link rel="stylesheet" href="../../css/config.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <meta charset="UTF-8">
   <title>Página Protegida</title>
   <script src="../js/config.js"></script>
@@ -34,7 +36,6 @@ $usuario = mysqli_fetch_assoc($query);
    include("mensagem.php");
    ?>
   <h2>Olá <?=$usuario['nome']?></h2>
-  <img src="img/<?php echo $usuario['imagem']; ?>"><br>
 
   <?php
                     if (isset($_GET['id'])) {
@@ -54,27 +55,29 @@ $usuario = mysqli_fetch_assoc($query);
                 }
                         ?>
   <table>
-  <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-        </tr>
-<tbody>
-    <tr>
-        <td><p><?=($usuario['nome']); ?></p></td>
-        <td><p><?=($usuario['email']); ?></p></td>
-    </tr>
-</tbody>
-</table>
-  <a href="edit.php?id=<?= $usuario['id']; ?>">Editar perfil</a><br>
-    <a href="especie.php">catalogo - espécies</a><br>
-    <a href="artigos.php">catalogo - artigos</a><br>
-    <a href="favoritos.php">favoritos</a><br><br>
 
-  <form action="sair.php" method="post">
-      <button type="submit">Sair</button>
-  </form>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-content">
+        <div class="user">
+          <img class="logo" src="img/logo.svg" alt="Logo Arthropoda">
+          <h1 class="name"><span class="item-name" id="title">Arthropoda</span></h1>
+        </div>
+        <ul class="side-items">
+          <li class="side-item"></liclass><a href="homepage.html"><i class="fa-solid fa-house"></i><span class="item-name">Home</span></a></li>
+          <li class="section-title">Pessoal</li>
+          <li class="side-item"><a href="edit.php?id=<?= $usuario['id']; ?>"><i class="fa-solid fa-user"></i><span class="item-name">Perfil</span></a></li>
+          <li class="side-item"><a href="favoritos.php"><i class="fa-solid fa-star"></i><span class="item-name">Favoritos</span></a></li>
+        
+          <li class="section-title">Explore</li>
+          <li class="side-item"><a href="#"><i class="fa-solid fa-compass"></i><span class="item-name">Curiosidades</span></a></li>
+          <li class="side-item"><a href="especie.php"><i class="fa-solid fa-book"></i><span class="item-name">Espécies</span></a></li>
+          <li class="side-item"><a href="artigos.php"><i class="fa-solid fa-flask"></i><span class="item-name">Artigos científicos</span></a></li>
+        </ul>
+        
+      </div>
+    </nav>
 
 </body>
 </html>

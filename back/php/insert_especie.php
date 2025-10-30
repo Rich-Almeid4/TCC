@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION['nome']) || $_SESSION['tipo'] !== "admin") {
@@ -7,99 +6,198 @@ if (!isset($_SESSION['nome']) || $_SESSION['tipo'] !== "admin") {
     header("Location: login.php");
     exit;
 }
+
+include('conecta.php');
+
+// Pegando o usuário logado pelo ID da sessão
+$usuario_id = $_SESSION['id'];
+$sql = "SELECT * FROM usuario WHERE id = '$usuario_id' LIMIT 1";
+$query = mysqli_query($conn, $sql);
+$usuario = mysqli_fetch_assoc($query);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <title>Adicionar Espécie</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/add_especie.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body class="p-4 bg-light">
 
-<div class="container">
-  <h2 class="mb-4">Adicionar Nova Espécie</h2>
-
-  <?php include("mensagem.php"); ?>
-
-  <form action="acoes.php" method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm bg-white rounded">
-
-    <!-- AÇÃO CORRETA -->
-    <input type="hidden" name="acao" value="cadastrar">
-
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <label class="form-label">Nome Comum</label>
-        <input type="text" name="nome_comum" class="form-control" required>
+<body>
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+      <div class="user">
+        <h1>Olá, <?php echo htmlspecialchars($usuario['nome']); ?></h1>
       </div>
-      <div class="col-md-6">
-        <label class="form-label">Nome Científico</label>
-        <input type="text" name="nome_cientifico" class="form-control" required>
-      </div>
+      <ul class="side-items">
+        <li class="section-title">Funções Admin</li>
+        <li class="side-item"><a href="insert_especie.php"><i class="fa-solid fa-plus"></i><span>Adicionar Espécie</span></a></li>
+        <li class="side-item"><a href="upload_artigo.php"><i class="fa-solid fa-file-circle-plus"></i><span>Adicionar Artigo</span></a></li>
+        <li class="side-item"><a href="edit_especie.php"><i class="fa-solid fa-pen-to-square"></i><span>Gerenciar Espécies</span></a></li>
+        <li class="side-item"><a href="edit_artigo.php"><i class="fa-solid fa-newspaper"></i><span>Gerenciar Artigos</span></a></li>
+        <li class="side-item"><a href="users.php"><i class="fa-solid fa-users"></i><span>Gerenciar Usuários</span></a></li>
+
+        <li class="section-title">Funções Comuns</li>
+        <li class="side-item"><a href="especie.php"><i class="fa-solid fa-compass"></i><span>Catálogo de Espécies</span></a></li>
+        <li class="side-item"><a href="artigos.php"><i class="fa-solid fa-flask"></i><span>Catálogo de Artigos</span></a></li>
+        <li class="side-item"><a href="favoritos.php"><i class="fa-solid fa-star"></i><span>Favoritos</span></a></li>
+        <li class="side-item"><a href="edit-adm.php?id=<?= $usuario['id']; ?>"><i class="fa-solid fa-user-gear"></i><span>Editar Perfil</span></a></li>
+      </ul>
     </div>
 
-    <div class="row mb-3">
-      <div class="col-md-6">
-        <label class="form-label">Família</label>
-        <input type="text" name="familia" class="form-control" required>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Ordem</label>
-        <input type="text" name="ordem" class="form-control" required>
-      </div>
+    <form class="logout" action="sair.php" method="post">
+      <button type="submit"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
+    </form>
+  </nav>
+
+  <main class="container-form">
+    <h2 class="txt-topo"><i class="fa-solid fa-leaf"></i> Adicionar Nova Espécie</h2>
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label">Descrição</label>
-      <textarea name="descricao" rows="3" class="form-control" required></textarea>
-    </div>
+    <?php include("mensagem.php"); ?>
 
-    <div class="row mb-3">
-      <div class="col-md-4">
-        <label class="form-label">Habitat</label>
-        <input type="text" name="habitat" class="form-control" required>
+    <form action="acoes.php" method="POST" enctype="multipart/form-data" id="form-especie">
+      <input type="hidden" name="acao" value="cadastrar">
+
+      <!-- Seção: Identificação -->
+      <div class="form-section">
+        <h3><i class="fa-solid fa-tag"></i> Identificação</h3>
+        <div class="campo-duplo">
+          <div>
+            <label><i class="fa-solid fa-font"></i> Nome Comum</label>
+            <input type="text" name="nome_comum" placeholder="Ex: Papagaio-do-mar" required>
+          </div>
+          <div>
+            <label><i class="fa-solid fa-flask"></i> Nome Científico</label>
+            <input type="text" name="nome_cientifico" placeholder="Ex: Ara ararauna" required>
+          </div>
+        </div>
+        <div class="campo-duplo">
+          <div>
+            <label><i class="fa-solid fa-tree"></i> Família</label>
+            <input type="text" name="familia" placeholder="Ex: Psittacidae" required>
+          </div>
+          <div>
+            <label><i class="fa-solid fa-list"></i> Ordem</label>
+            <input type="text" name="ordem" placeholder="Ex: Psittaciformes" required>
+          </div>
+        </div>
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Distribuição Geográfica</label>
-        <input type="text" name="distribuicao_geografica" class="form-control" required>
+
+      <!-- Seção: Descrição e Comportamento -->
+      <div class="form-section">
+        <h3><i class="fa-solid fa-info-circle"></i> Descrição e Comportamento</h3>
+        <div>
+          <label><i class="fa-solid fa-align-left"></i> Descrição</label>
+          <textarea name="descricao" rows="3" placeholder="Descreva a espécie em detalhes..." required></textarea>
+        </div>
+        <div>
+          <label><i class="fa-solid fa-brain"></i> Comportamento</label>
+          <textarea name="comportamento" rows="3" placeholder="Ex: Vive em bandos, migra sazonalmente..." required></textarea>
+        </div>
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Alimentação</label>
-        <input type="text" name="alimentacao" class="form-control" required>
+
+      <!-- Seção: Características -->
+      <div class="form-section">
+        <h3><i class="fa-solid fa-cogs"></i> Características</h3>
+        <div class="campo-triplo">
+          <div>
+            <label><i class="fa-solid fa-home"></i> Habitat</label>
+            <input type="text" name="habitat" placeholder="Ex: Florestas tropicais" required>
+          </div>
+          <div>
+            <label><i class="fa-solid fa-globe"></i> Distribuição Geográfica</label>
+            <input type="text" name="distribuicao_geografica" placeholder="Ex: América do Sul" required>
+          </div>
+          <div>
+            <label><i class="fa-solid fa-utensils"></i> Alimentação</label>
+            <input type="text" name="alimentacao" placeholder="Ex: Frutas e sementes" required>
+          </div>
+        </div>
+        <div class="campo-triplo">
+          <div>
+            <label><i class="fa-solid fa-ruler"></i> Envergadura das Asas</label>
+            <input type="text" name="envergadura_alas" placeholder="Ex: 1.5m" required>
+          </div>
+          <div>
+            <label><i class="fa-solid fa-clock"></i> Ciclo de Vida</label>
+            <input type="text" name="ciclo_vida" placeholder="Ex: 20-30 anos" required>
+          </div>
+          <div>
+            <label><i class="fa-solid fa-exclamation-triangle"></i> Status de Conservação</label>
+            <input type="text" name="status_conservacao" placeholder="Ex: Vulnerável" required>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="row mb-3">
-      <div class="col-md-4">
-        <label class="form-label">Envergadura das Asas</label>
-        <input type="text" name="envergadura_alas" class="form-control" required>
+      <!-- Seção: Imagem -->
+      <div class="form-section">
+        <h3><i class="fa-solid fa-image"></i> Imagem</h3>
+        <div>
+          <label><i class="fa-solid fa-upload"></i> Selecione uma Imagem</label>
+          <input type="file" name="imagem" accept="image/*" required onchange="previewImage(event)">
+        </div>
+        <div class="image-preview" id="image-preview">
+          <img id="preview-img" src="" alt="Preview da Imagem" style="display: none;">
+        </div>
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Ciclo de Vida</label>
-        <input type="text" name="ciclo_vida" class="form-control" required>
+
+      <div class="botoes-form">
+        <button type="submit" class="botao-enviar"><i class="fa-solid fa-save"></i> Salvar Espécie</button>
+        <button type="button" class="limpar-btn" onclick="limparFormulario()"><i class="fa-solid fa-eraser"></i> Limpar</button>
+        <a href="admin.php" class="voltar-btn"><i class="fa-solid fa-arrow-left"></i> Cancelar</a>
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Status de Conservação</label>
-        <input type="text" name="status_conservacao" class="form-control" required>
-      </div>
-    </div>
+    </form>
+  </main>
 
-    <div class="mb-3">
-      <label class="form-label">Comportamento</label>
-      <textarea name="comportamento" rows="3" class="form-control" required></textarea>
-    </div>
+  <script>
+    
+    // Preview da imagem
+    function previewImage(event) {
+      const file = event.target.files[0];
+      const preview = document.getElementById('preview-img');
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.style.display = 'none';
+      }
+    }
 
-    <div class="mb-3">
-      <label class="form-label">Imagem (arquivo)</label>
-      <input type="file" name="imagem" class="form-control" accept="image/*" required>
-    </div>
+    // Limpar formulário
+    function limparFormulario() {
+      document.getElementById('form-especie').reset();
+      document.getElementById('preview-img').style.display = 'none';
+      updateProgress();
+    }
 
-    <button type="submit" class="btn btn-primary">Salvar Espécie</button>
-    <a href="admin.php" class="btn btn-secondary">Cancelar</a>
-  
-  </form>
+    // Barra de progresso simulada
+    function updateProgress() {
+      const inputs = document.querySelectorAll('input[required], textarea[required]');
+      let filled = 0;
+      inputs.forEach(input => {
+        if (input.value.trim() !== '') filled++;
+      });
+      const progress = (filled / inputs.length) * 100;
+      document.getElementById('progress').style.width = progress + '%';
+    }
 
-</div>
-
+    // Adicionar listeners para atualizar progresso
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('input', updateProgress);
+      });
+      updateProgress();
+    });
+  </script>
 </body>
 </html>

@@ -187,7 +187,7 @@ if (isset($_POST['acao']) && $_POST['acao'] === 'cadastrar') {
             )";
 
     if (mysqli_query($conn, $sql)) {
-        $_SESSION['mensagem'] = "Espécie cadastrada com sucesso!";
+        $_SESSION['mensagem'] = "";
     } else {
         $_SESSION['mensagem'] = "Erro ao cadastrar espécie: " . mysqli_error($conn);
     }

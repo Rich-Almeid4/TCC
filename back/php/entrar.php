@@ -19,8 +19,6 @@ if ($result->num_rows > 0) {
     $_SESSION['nome'] = $usuario['nome'];
     $_SESSION['tipo'] = $usuario['tipo']; // "admin" ou "comum"
 
-    $_SESSION['mensagem'] = 'Logado com sucesso!';
-
     // Redirecionar conforme tipo
     if ($usuario['tipo'] === "admin") {
         header('Location: admin.php'); // página de admin
