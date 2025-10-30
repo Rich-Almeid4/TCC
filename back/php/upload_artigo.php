@@ -21,6 +21,7 @@ $usuario = mysqli_fetch_assoc($query);
 <head>
     <meta charset="UTF-8">
     <title>Upload de Artigo</title>
+    <!-- Updated CSS path to new organized structure -->
     <link rel="stylesheet" href="../css/add_especie.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -61,8 +62,8 @@ $usuario = mysqli_fetch_assoc($query);
     <?php include("mensagem.php"); ?>
 
     <form action="acoes.php" method="POST" enctype="multipart/form-data" id="form-especie">
-      <input type="hidden" name="acao" value="cadastrar">
-
+      <!-- Removed conflicting hidden input that was causing articles to be inserted as species -->
+      
       <!-- Seção: Informações -->
       <div class="form-section">
         <h3><i class="fa-solid fa-circle-info"></i> Informações</h3>
@@ -100,13 +101,13 @@ $usuario = mysqli_fetch_assoc($query);
           <input type="file" name="capa" accept="image/*" required onchange="previewImage(event)">
         </div>
         <div class="image-preview" id="image-preview">
-          <img id="preview-img" src="" alt="Preview da Imagem" style="display: none;">
+          <img id="preview-img" src="/placeholder.svg" alt="Preview da Imagem" style="display: none;">
         </div>
       </div>
 
       <div class="botoes-form">
         <button type="submit" name="upload_artigo" class="botao-enviar"><i class="fa-solid fa-floppy-disk"></i> Salvar Artigo</button>
-        <button type="button" class="limpar-btn" onclick="limparFormulario()"><i class="fa-solid fa-eraser"xml_error_string></i> Limpar</button>
+        <button type="button" class="limpar-btn" onclick="limparFormulario()"><i class="fa-solid fa-eraser"></i> Limpar</button>
         <a href="admin.php" class="voltar-btn"><i class="fa-solid fa-arrow-left"></i> Cancelar</a>
       </div>
     </form>

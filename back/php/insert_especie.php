@@ -23,6 +23,7 @@ $usuario = mysqli_fetch_assoc($query);
   <title>Adicionar Espécie</title>
   <link rel="stylesheet" href="../css/add_especie.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
 </head>
 
 <body>

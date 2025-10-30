@@ -1,5 +1,6 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
+session_start();
 require 'conecta.php';
 ?>
 
@@ -8,7 +9,7 @@ require 'conecta.php';
 <head>
   <meta charset="UTF-8">
   <title>Artigos</title>
-  <link rel="stylesheet" href="../css/artigo.css">
+  <link rel="stylesheet" href="../css/artigo2.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
@@ -20,9 +21,9 @@ require 'conecta.php';
           <h1 class="name"><span class="item-name" id="title">Arthropoda</span></h1>
         </div>
         <ul class="side-items">
-          <li class="side-item"></liclass><a href="#"><i class="fa-solid fa-house"></i><span class="item-name">Home</span></a></li>
+          <li class="side-item"><a href="index.php"><i class="fa-solid fa-house"></i><span class="item-name">Home</span></a></li>
           <li class="section-title">Pessoal</li>
-          <li class="side-item"><a href="edit.php?id=<?= $usuario['id']; ?>"><i class="fa-solid fa-user"></i><span class="item-name">Perfil</span></a></li>
+          <li class="side-item"><a href="edit.php"><i class="fa-solid fa-user"></i><span class="item-name">Perfil</span></a></li>
           <li class="side-item"><a href="favoritos.php"><i class="fa-solid fa-star"></i><span class="item-name">Favoritos</span></a></li>
         
           <li class="section-title">Explore</li>
@@ -34,10 +35,12 @@ require 'conecta.php';
       </div>
     </nav>
 
-
+  <button class="toggle-btn" id="toggle-btn">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
 
   <div class="container">
-    <h1 class="txt-topo" >Artigos</h1>
+    <h1 class="txt-topo">Artigos</h1>
 
     <div class="lista-artigos">
     <?php
@@ -52,8 +55,8 @@ require 'conecta.php';
             echo "<h2>" . htmlspecialchars($artigo['titulo']) . "</h2>";
             echo "<p class='info'>" . htmlspecialchars($artigo['autor']) . "</p>";
             
-            $ext = pathinfo($artigo['caminho_arquivo'], PATHINFO_EXTENSION);
-            $caminho = 'documentos/' . $artigo['caminho_arquivo'];
+            $caminho = $artigo['caminho_arquivo'];
+            $ext = pathinfo($caminho, PATHINFO_EXTENSION);
 
             if (strtolower($ext) === 'pdf') {
                 echo "<iframe src='$caminho'></iframe>";
@@ -61,22 +64,21 @@ require 'conecta.php';
                 echo "<p>Tipo de documento não suportado. <a href='$caminho' target='_blank'>Clique para abrir</a></p>";
             }
 
-            // 🟢 Botão de favoritar
             if (isset($_SESSION['id'])) {
               echo "
               <form action='acoes.php' method='POST'>
                   <input type='hidden' name='id_artigo' value='{$artigo['id']}'>
-                  <button type='submit' name='favoritar_artigo'>
-                      ⭐ Adicionar aos Favoritos
+                  <button type='submit' name='favoritar_artigo' class='botao'>
+                      <i class='fa-solid fa-star'></i> Adicionar aos Favoritos
                   </button>
               </form>
               ";
             }
 
-            echo "<a class='voltar-btn' href='artigos.php'>&larr; Voltar à lista</a>";
+            echo "<a class='voltar-btn' href='artigos.php'><i class='fa-solid fa-arrow-left'></i> Voltar à lista</a>";
             echo "</div>";
         } else {
-            echo "<p>Artigo não encontrado.</p>";
+            echo "<p class='info'>Artigo não encontrado.</p>";
         }
 
     } else {
@@ -90,17 +92,24 @@ require 'conecta.php';
                   echo "<img class='artigo-img' src='" . htmlspecialchars($artigo['capa']) . "' alt='Capa do artigo'>";
                 }
                 echo "<p class='info-data'>" . date('d/m/Y', strtotime($artigo['data_publicacao'])) . "</p>";
-                echo "<h2><strong><a class='artigo-titulo' href='artigos.php?id=" . $artigo['id'] . "'>" . htmlspecialchars($artigo['titulo']) . "</a></strong></h2>";
-                echo "<p class='info'> " . htmlspecialchars($artigo['autor']) . "</p>";
-                echo "<a class='botao' href='artigos.php?id=" . $artigo['id'] . "'>Visualizar documento</a>";
+                echo "<h2><a class='artigo-titulo' href='artigos.php?id=" . $artigo['id'] . "'>" . htmlspecialchars($artigo['titulo']) . "</a></h2>";
+                echo "<p class='info'>Por " . htmlspecialchars($artigo['autor']) . "</p>";
+                echo "<a class='botao' href='artigos.php?id=" . $artigo['id'] . "'><i class='fa-solid fa-file-pdf'></i> Visualizar documento</a>";
                 echo "</div>";                
             }
+        } else {
+            echo "<div class='artigo'>";
+            echo "<p class='info'>Nenhum artigo cadastrado ainda.</p>";
+            echo "</div>";
         }
     }
     ?>
     </div>
   </div>
 
+  <button class="back-to-top" id="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <script>
   const sidebar = document.querySelector(".sidebar");
@@ -144,21 +153,15 @@ require 'conecta.php';
     }
   }
 
-  if (menuToggle) {
-    menuToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("open");
-    });
+  toggleBtn.addEventListener("click", toggleSidebar);
 
-    window.addEventListener("click", (e) => {
-      if (
-        window.innerWidth <= 768 &&
-        !sidebar.contains(e.target) &&
-        !menuToggle.contains(e.target)
-      ) {
-        sidebar.classList.remove("open");
-      }
-    });
-  }
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
 
 </body>
